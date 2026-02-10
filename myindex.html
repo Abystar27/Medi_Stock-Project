@@ -5,5 +5,22 @@
       document.write("Hello, world!");
     </script>
   </head>
-  <body></body>
+  <body>
+    <script>
+      function showMessage() {
+        var name = document.getElementById("my_text").value;
+        document.write("Your name is " + name);
+      }
+      var name = "Lisa"; // string type
+      var age = 21; //Number type
+      var teacher = true; // Boolean type: Notice all lowercase true
+      document.write("Name " + name + "<br>"); // + is used for string concatentation
+      document.write("Age " + age + "<br>"); // Try using + with another number and see what happens!
+      document.write("Is teacher? " + teacher);
+    </script>
+    <form>
+      <input type="text" id="my_text" />
+      <input type="submit" onclick="showMessage()" />
+    </form>
+  </body>
 </html>

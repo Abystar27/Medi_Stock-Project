@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediStock</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/328bbfc4a9.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="headNav">
+      <a class="home" href="dashboard.html">
+        <div class="logo">
+          <img src="/Images/medi1.png" id="logo" />
+          <h1>MediStock</h1>
+        </div>
+      </a>
+      <ul class="navLinks">
+        <li><a href="inventory.html">Inventory </a></li>
+        <li>Order</li>
+        <li>Report</li>
+        <li>Alert</li>
+      </ul>
+      <div class="rightNav">
+        <div class="searchbar">
+          <input type="text" id="search" placeholder="Search by name..." />
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="userProfile">
+          <i class="fa-solid fa-user"></i>
+          <p>Profile</p>
+        </div>
+      </div>
+    </div>
+    <div class="inventory-container">
+      <div class="inventory-header">
+        <h1>Inventory</h1>
+        <button class="add-btn">+ Add New Item</button>
+      </div>
+
+      <div class="inventory-filters">
+        <input type="text" id="search" placeholder="Search items..." />
+        <select id="categoryFilter">
+          <option value="">All Categories</option>
+          <option value="PPE">PPE</option>
+          <option value="Consumables">Consumables</option>
+          <option value="Fluids">Fluids</option>
+        </select>
+        <select id="statusFilter">
+          <option value="">All Status</option>
+          <option value="ok">OK</option>
+          <option value="low">Low Stock</option>
+          <option value="critical">Critical</option>
+          <option value="expired">Expired</option>
+        </select>
+      </div>
+
+      <table class="inventory-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Expiry</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="inventory-body"></tbody>
+        <!-- <tbody>
+          <tr>
+            <td>Gloves</td>
+            <td>PPE</td>
+            <td>20</td>
+            <td>2026-05-12</td>
+            <td><span class="status low">Low Stock</span></td>
+            <td><button class="edit-btn">Edit</button></td>
+          </tr>
+          <tr>
+            <td>Surgical Masks</td>
+            <td>PPE</td>
+            <td>20</td>
+            <td>2026-05-12</td>
+            <td><span class="status low">Low Stock</span></td>
+            <td><button class="edit-btn">Edit</button></td>
+          </tr>
+          <tr>
+            <td>N95 Respirators</td>
+            <td>PPE</td>
+            <td>20</td>
+            <td>2026-05-12</td>
+            <td><span class="status low">Low Stock</span></td>
+            <td><button class="edit-btn">Edit</button></td>
+          </tr>
+          <tr>
+            <td>Disposable Gowns</td>
+            <td>PPE</td>
+            <td>20</td>
+            <td>2026-05-12</td>
+            <td><span class="status low">Low Stock</span></td>
+            <td><button class="edit-btn">Edit</button></td>
+          </tr>
+          <tr>
+            <td>Syringe</td>
+            <td>Consumables</td>
+            <td>20</td>
+            <td>2026-05-12</td>
+            <td><span class="status low">Low Stock</span></td>
+            <td><button class="edit-btn">Edit</button></td>
+          </tr>
+          <tr>
+            <td>Bandages</td>
+            <td>Consumables</td>
+            <td>20</td>
+            <td>2026-05-12</td>
+            <td><span class="status low">Low Stock</span></td>
+            <td><button class="edit-btn">Edit</button></td>
+          </tr>
+          <tr>
+            <td>Test Strips</td>
+            <td>Consumables</td>
+            <td>20</td>
+            <td>2026-05-12</td>
+            <td><span class="status low">Low Stock</span></td>
+            <td><button class="edit-btn">Edit</button></td>
+          </tr>
+          <tr>
+            <td>Paracetamol</td>
+            <td>Medication</td>
+            <td>20</td>
+            <td>2026-05-12</td>
+            <td><span class="status low">Low Stock</span></td>
+            <td><button class="edit-btn">Edit</button></td>
+          </tr>
+          <tr>
+            <td>Ibuprofen</td>
+            <td>Medication</td>
+            <td>20</td>
+            <td>2026-05-12</td>
+            <td><span class="status low">Low Stock</span></td>
+            <td><button class="edit-btn">Edit</button></td>
+          </tr>
+          <tr>
+            <td>Saline Bags</td>
+            <td>Medication</td>
+            <td>20</td>
+            <td>2026-05-12</td>
+            <td><span class="status low">Low Stock</span></td>
+            <td><button class="edit-btn">Edit</button></td>
+          </tr>
+        </tbody> -->
+      </table>
+    </div>
+    <script src="new.js"></script>
+  </body>
+</html>
