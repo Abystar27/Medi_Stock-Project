@@ -39,19 +39,27 @@
       <div class="mainBody">
         <h1>Welcome, Admin</h1>
         <aside>
-          <div class="cards">
-            <i class="fa-solid fa-book"></i>
-            <p>Total items in inventory</p>
-          </div>
-          <div class="cards">
-            <!-- <i class="fa-solid fa-exclamation"></i> -->
-            <i class="fa-solid fa-circle-exclamation"></i>
-            <p>Low Stock Items</p>
-          </div>
-          <div class="cards">
-            <i class="fa-solid fa-calendar-xmark"></i>
-            <p>Expired Items</p>
-          </div>
+          <a href="inventory.html" class="cards">
+            <div>
+              <i class="fa-solid fa-book" id="inventoryLogo"></i>
+              <p>Total items in inventory</p>
+              <h1 id="totalStock"></h1>
+            </div>
+          </a>
+          <a href="lowStock.html" class="cards" id="lowStock">
+            <div>
+              <i id="ls" class="fa-solid fa-circle-exclamation"></i>
+              <p>Low Stock Items</p>
+              <h1 id="lowStock-count"></h1>
+            </div>
+          </a>
+          <a href="expiredItems.html" class="cards" id="expired">
+            <div>
+              <i class="fa-solid fa-calendar-xmark"></i>
+              <p>Expired Items</p>
+            </div>
+          </a>
+
           <div class="cards">
             <i class="fa-solid fa-alarm-clock"></i>
             <p>Expiring Soon</p>

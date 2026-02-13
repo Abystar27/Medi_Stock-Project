@@ -73,6 +73,8 @@ body {
 .logo h1 {
   margin-left: 8px;
 }
+#inventorySearch,
+#lowstocksearch,
 #search {
   background-color: white;
   border: none;
@@ -116,6 +118,7 @@ body {
   background-color: #1e2f45;
   /* color: #f0f4f8; */
   color: #b0c4d4;
+  text-decoration: none;
 }
 .cards:hover {
   border-color: #f0f4f8;
@@ -163,14 +166,16 @@ body {
   flex-wrap: wrap;
   margin-top: 2rem;
 }
-.inventory-container {
+.inventory-container,
+.Lowstock-container {
   padding: 20px;
   color: #f0f4f8;
   padding-left: 10%;
   padding-right: 10%;
 }
 
-.inventory-header {
+.inventory-header,
+.Lowstock-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -189,7 +194,8 @@ body {
   background-color: #27ae60;
 }
 
-.inventory-filters {
+.inventory-filters,
+.Lowstock-filters {
   margin: 20px 0;
   display: flex;
   gap: 10px;
@@ -208,7 +214,20 @@ body {
   padding: 18px;
   border-bottom: 1px solid #2a3d55;
 }
+.Lowstock-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1e2f45;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 2rem;
+}
 
+.Lowstock-table th,
+.Lowstock-table td {
+  padding: 18px;
+  border-bottom: 1px solid #2a3d55;
+}
 .status.low {
   color: #f1c40f;
 }
@@ -223,4 +242,17 @@ body {
 
 .status.expired {
   color: #95a5a6;
+}
+#categoryFilter,
+#LSFilter {
+  border-radius: 0.8rem;
+  font-size: 12px;
+  padding-left: 7px;
+  text-align: center;
+}
+#ls {
+  color: rgb(216, 54, 54);
+}
+#inventoryLogo {
+  color: #f1c40f;
 }

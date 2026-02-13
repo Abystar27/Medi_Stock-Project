@@ -1,0 +1,509 @@
+[
+  {
+    "id": 1,
+    "name": "Paracetamol 500mg",
+    "category": "Medicine",
+    "quantity": 120,
+    "expiryDate": "2026-05-12",
+    "supplier": "HealthPlus Pharma",
+    "batchNumber": "B001",
+    "price": 5.99
+  },
+  {
+    "id": 2,
+    "name": "Ibuprofen 400mg",
+    "category": "Medicine",
+    "quantity": 75,
+    "expiryDate": "2025-09-18",
+    "supplier": "MediCore Labs",
+    "batchNumber": "B002",
+    "price": 6.4
+  },
+  {
+    "id": 3,
+    "name": "Amoxicillin 250mg",
+    "category": "Medicine",
+    "quantity": 8,
+    "expiryDate": "2025-04-20",
+    "supplier": "Wellness Pharma",
+    "batchNumber": "B003",
+    "price": 12.5
+  },
+  {
+    "id": 4,
+    "name": "Metformin 500mg",
+    "category": "Medicine",
+    "quantity": 0,
+    "expiryDate": "2025-03-18",
+    "supplier": "GlucoMed",
+    "batchNumber": "B004",
+    "price": 10.25
+  },
+  {
+    "id": 5,
+    "name": "Cough Syrup DX",
+    "category": "Medicine",
+    "quantity": 25,
+    "expiryDate": "2025-11-10",
+    "supplier": "CarePlus",
+    "batchNumber": "B005",
+    "price": 7.75
+  },
+  {
+    "id": 6,
+    "name": "Insulin Injection",
+    "category": "Medicine",
+    "quantity": 15,
+    "expiryDate": "2025-07-15",
+    "supplier": "LifeCare Biotech",
+    "batchNumber": "B006",
+    "price": 45.0
+  },
+  {
+    "id": 7,
+    "name": "Aspirin 300mg",
+    "category": "Medicine",
+    "quantity": 90,
+    "expiryDate": "2026-08-12",
+    "supplier": "PharmaPlus",
+    "batchNumber": "B007",
+    "price": 4.99
+  },
+  {
+    "id": 8,
+    "name": "Azithromycin 500mg",
+    "category": "Medicine",
+    "quantity": 12,
+    "expiryDate": "2025-06-01",
+    "supplier": "MediCore Labs",
+    "batchNumber": "B008",
+    "price": 18.5
+  },
+  {
+    "id": 9,
+    "name": "Omeprazole 20mg",
+    "category": "Medicine",
+    "quantity": 48,
+    "expiryDate": "2026-07-07",
+    "supplier": "PharmaPlus",
+    "batchNumber": "B009",
+    "price": 15.0
+  },
+  {
+    "id": 10,
+    "name": "Lisinopril 10mg",
+    "category": "Medicine",
+    "quantity": 17,
+    "expiryDate": "2026-02-02",
+    "supplier": "HealthPlus Pharma",
+    "batchNumber": "B010",
+    "price": 11.4
+  },
+
+  {
+    "id": 11,
+    "name": "Thermometer Digital",
+    "category": "Equipment",
+    "quantity": 19,
+    "expiryDate": "2029-01-01",
+    "supplier": "CarePlus",
+    "batchNumber": "B011",
+    "price": 22.0
+  },
+  {
+    "id": 12,
+    "name": "Blood Pressure Monitor",
+    "category": "Equipment",
+    "quantity": 7,
+    "expiryDate": "2029-01-01",
+    "supplier": "LifeCare Biotech",
+    "batchNumber": "B012",
+    "price": 65.0
+  },
+  {
+    "id": 13,
+    "name": "ECG Machine",
+    "category": "Equipment",
+    "quantity": 3,
+    "expiryDate": "2030-05-05",
+    "supplier": "MedEquip Ltd",
+    "batchNumber": "B013",
+    "price": 1200.0
+  },
+  {
+    "id": 14,
+    "name": "Wheelchair",
+    "category": "Equipment",
+    "quantity": 10,
+    "expiryDate": "2032-01-01",
+    "supplier": "CarePlus",
+    "batchNumber": "B014",
+    "price": 150.0
+  },
+  {
+    "id": 15,
+    "name": "Oxygen Cylinder",
+    "category": "Equipment",
+    "quantity": 6,
+    "expiryDate": "2028-08-18",
+    "supplier": "LifeCare Biotech",
+    "batchNumber": "B015",
+    "price": 300.0
+  },
+  {
+    "id": 16,
+    "name": "Hospital Bed",
+    "category": "Equipment",
+    "quantity": 0,
+    "expiryDate": "2031-12-12",
+    "supplier": "MedEquip Ltd",
+    "batchNumber": "B016",
+    "price": 850.0
+  },
+  {
+    "id": 17,
+    "name": "Infusion Pump",
+    "category": "Equipment",
+    "quantity": 5,
+    "expiryDate": "2029-03-03",
+    "supplier": "LifeCare Biotech",
+    "batchNumber": "B017",
+    "price": 950.0
+  },
+  {
+    "id": 18,
+    "name": "Defibrillator",
+    "category": "Equipment",
+    "quantity": 2,
+    "expiryDate": "2030-09-09",
+    "supplier": "MedEquip Ltd",
+    "batchNumber": "B018",
+    "price": 2000.0
+  },
+
+  {
+    "id": 19,
+    "name": "Surgical Gloves",
+    "category": "Consumable",
+    "quantity": 150,
+    "expiryDate": "2027-05-05",
+    "supplier": "HealthPlus Pharma",
+    "batchNumber": "B019",
+    "price": 15.0
+  },
+  {
+    "id": 20,
+    "name": "Face Masks",
+    "category": "Consumable",
+    "quantity": 200,
+    "expiryDate": "2027-12-31",
+    "supplier": "HealthPlus Pharma",
+    "batchNumber": "B020",
+    "price": 12.0
+  },
+  {
+    "id": 21,
+    "name": "Bandage Roll",
+    "category": "Consumable",
+    "quantity": 70,
+    "expiryDate": "2028-01-01",
+    "supplier": "CleanCare",
+    "batchNumber": "B021",
+    "price": 2.5
+  },
+  {
+    "id": 22,
+    "name": "Syringe 5ml",
+    "category": "Consumable",
+    "quantity": 95,
+    "expiryDate": "2028-01-01",
+    "supplier": "CleanCare",
+    "batchNumber": "B022",
+    "price": 1.2
+  },
+  {
+    "id": 23,
+    "name": "Alcohol Swabs",
+    "category": "Consumable",
+    "quantity": 140,
+    "expiryDate": "2027-10-10",
+    "supplier": "HealthPlus Pharma",
+    "batchNumber": "B023",
+    "price": 6.5
+  },
+  {
+    "id": 24,
+    "name": "Hand Sanitizer",
+    "category": "Consumable",
+    "quantity": 88,
+    "expiryDate": "2027-09-09",
+    "supplier": "CleanCare",
+    "batchNumber": "B024",
+    "price": 3.2
+  },
+  {
+    "id": 25,
+    "name": "IV Cannula",
+    "category": "Consumable",
+    "quantity": 60,
+    "expiryDate": "2026-06-06",
+    "supplier": "CarePlus",
+    "batchNumber": "B025",
+    "price": 2.8
+  },
+
+  {
+    "id": 26,
+    "name": "Clotrimazole Cream",
+    "category": "Medicine",
+    "quantity": 16,
+    "expiryDate": "2026-08-18",
+    "supplier": "PharmaPlus",
+    "batchNumber": "B026",
+    "price": 5.7
+  },
+  {
+    "id": 27,
+    "name": "Hydrocortisone Cream",
+    "category": "Medicine",
+    "quantity": 26,
+    "expiryDate": "2026-03-13",
+    "supplier": "PharmaPlus",
+    "batchNumber": "B027",
+    "price": 4.6
+  },
+  {
+    "id": 28,
+    "name": "Warfarin 5mg",
+    "category": "Medicine",
+    "quantity": 0,
+    "expiryDate": "2025-05-14",
+    "supplier": "PharmaPlus",
+    "batchNumber": "B028",
+    "price": 16.75
+  },
+  {
+    "id": 29,
+    "name": "Heparin Injection",
+    "category": "Medicine",
+    "quantity": 3,
+    "expiryDate": "2025-04-11",
+    "supplier": "LifeCare Biotech",
+    "batchNumber": "B029",
+    "price": 55.0
+  },
+  {
+    "id": 30,
+    "name": "Ciprofloxacin 500mg",
+    "category": "Medicine",
+    "quantity": 11,
+    "expiryDate": "2025-09-30",
+    "supplier": "Wellness Pharma",
+    "batchNumber": "B030",
+    "price": 17.4
+  },
+
+  {
+    "id": 31,
+    "name": "Stethoscope",
+    "category": "Equipment",
+    "quantity": 14,
+    "expiryDate": "2030-01-01",
+    "supplier": "MedEquip Ltd",
+    "batchNumber": "B031",
+    "price": 45.0
+  },
+  {
+    "id": 32,
+    "name": "Nebulizer",
+    "category": "Equipment",
+    "quantity": 9,
+    "expiryDate": "2029-04-04",
+    "supplier": "CarePlus",
+    "batchNumber": "B032",
+    "price": 120.0
+  },
+  {
+    "id": 33,
+    "name": "Suction Machine",
+    "category": "Equipment",
+    "quantity": 4,
+    "expiryDate": "2031-06-06",
+    "supplier": "MedEquip Ltd",
+    "batchNumber": "B033",
+    "price": 600.0
+  },
+  {
+    "id": 34,
+    "name": "Thermal Scanner",
+    "category": "Equipment",
+    "quantity": 8,
+    "expiryDate": "2029-11-11",
+    "supplier": "LifeCare Biotech",
+    "batchNumber": "B034",
+    "price": 250.0
+  },
+  {
+    "id": 35,
+    "name": "Patient Monitor",
+    "category": "Equipment",
+    "quantity": 3,
+    "expiryDate": "2032-02-02",
+    "supplier": "MedEquip Ltd",
+    "batchNumber": "B035",
+    "price": 1500.0
+  },
+
+  {
+    "id": 36,
+    "name": "Cotton Wool",
+    "category": "Consumable",
+    "quantity": 100,
+    "expiryDate": "2027-07-07",
+    "supplier": "CleanCare",
+    "batchNumber": "B036",
+    "price": 4.0
+  },
+  {
+    "id": 37,
+    "name": "Gauze Pads",
+    "category": "Consumable",
+    "quantity": 90,
+    "expiryDate": "2026-10-10",
+    "supplier": "HealthPlus Pharma",
+    "batchNumber": "B037",
+    "price": 3.6
+  },
+  {
+    "id": 38,
+    "name": "Disposable Aprons",
+    "category": "Consumable",
+    "quantity": 110,
+    "expiryDate": "2027-03-03",
+    "supplier": "CarePlus",
+    "batchNumber": "B038",
+    "price": 9.0
+  },
+  {
+    "id": 39,
+    "name": "Test Tubes",
+    "category": "Consumable",
+    "quantity": 75,
+    "expiryDate": "2028-05-05",
+    "supplier": "MedEquip Ltd",
+    "batchNumber": "B039",
+    "price": 5.0
+  },
+  {
+    "id": 40,
+    "name": "Urine Bags",
+    "category": "Consumable",
+    "quantity": 65,
+    "expiryDate": "2026-12-12",
+    "supplier": "LifeCare Biotech",
+    "batchNumber": "B040",
+    "price": 6.2
+  },
+
+  {
+    "id": 41,
+    "name": "Vitamin C 1000mg",
+    "category": "Medicine",
+    "quantity": 60,
+    "expiryDate": "2026-01-30",
+    "supplier": "NutriHealth",
+    "batchNumber": "B041",
+    "price": 9.99
+  },
+  {
+    "id": 42,
+    "name": "Folic Acid 5mg",
+    "category": "Medicine",
+    "quantity": 63,
+    "expiryDate": "2026-10-15",
+    "supplier": "NutriHealth",
+    "batchNumber": "B042",
+    "price": 5.1
+  },
+  {
+    "id": 43,
+    "name": "Zinc Tablets",
+    "category": "Medicine",
+    "quantity": 44,
+    "expiryDate": "2026-09-09",
+    "supplier": "NutriHealth",
+    "batchNumber": "B043",
+    "price": 6.9
+  },
+  {
+    "id": 44,
+    "name": "Magnesium Tablets",
+    "category": "Medicine",
+    "quantity": 41,
+    "expiryDate": "2026-04-09",
+    "supplier": "NutriHealth",
+    "batchNumber": "B044",
+    "price": 7.6
+  },
+  {
+    "id": 45,
+    "name": "Allergy Relief Tablets",
+    "category": "Medicine",
+    "quantity": 28,
+    "expiryDate": "2026-06-30",
+    "supplier": "CarePlus",
+    "batchNumber": "B045",
+    "price": 5.85
+  },
+
+  {
+    "id": 46,
+    "name": "Glucose Test Strips",
+    "category": "Consumable",
+    "quantity": 24,
+    "expiryDate": "2026-09-19",
+    "supplier": "LifeCare Biotech",
+    "batchNumber": "B046",
+    "price": 30.0
+  },
+  {
+    "id": 47,
+    "name": "IV Drip Set",
+    "category": "Consumable",
+    "quantity": 50,
+    "expiryDate": "2026-05-05",
+    "supplier": "CarePlus",
+    "batchNumber": "B047",
+    "price": 4.9
+  },
+  {
+    "id": 48,
+    "name": "Scalpel Blades",
+    "category": "Consumable",
+    "quantity": 45,
+    "expiryDate": "2027-01-01",
+    "supplier": "MedEquip Ltd",
+    "batchNumber": "B048",
+    "price": 8.4
+  },
+  {
+    "id": 49,
+    "name": "Pulse Oximeter",
+    "category": "Equipment",
+    "quantity": 12,
+    "expiryDate": "2029-09-09",
+    "supplier": "LifeCare Biotech",
+    "batchNumber": "B049",
+    "price": 55.0
+  },
+  {
+    "id": 50,
+    "name": "Examination Lamp",
+    "category": "Equipment",
+    "quantity": 6,
+    "expiryDate": "2031-11-11",
+    "supplier": "MedEquip Ltd",
+    "batchNumber": "B050",
+    "price": 320.0
+  }
+]

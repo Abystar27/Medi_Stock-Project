@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediStock</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/328bbfc4a9.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="headNav">
+      <a class="home" href="dashboard.html">
+        <div class="logo">
+          <img src="/Images/medi1.png" id="logo" />
+          <h1>MediStock</h1>
+        </div>
+      </a>
+      <ul class="navLinks">
+        <li><a href="inventory.html">Inventory</a></li>
+        <li>Order</li>
+        <li>Report</li>
+        <li>Alert</li>
+      </ul>
+      <div class="rightNav">
+        <div class="searchbar">
+          <input type="text" id="search" placeholder="Search by name..." />
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="userProfile">
+          <i class="fa-solid fa-user"></i>
+          <p>Profile</p>
+        </div>
+      </div>
+    </div>
+    <div class="Lowstock-container">
+      <div class="Lowstock-header">
+        <h1>Expired Items</h1>
+      </div>
+      <div class="Lowstock-filters">
+        <input type="text" id="lowstocksearch" placeholder="Search items..." />
+        <select id="LSFilter">
+          <option value="all">All Categories</option>
+          <option value="Equipment">Equipment</option>
+          <option value="Consumable">Consumables</option>
+          <option value="Medicine">Medicine</option>
+        </select>
+      </div>
+
+      <table class="Lowstock-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Batch Number</th>
+            <th>Expiry</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="expiredItems"></tbody>
+      </table>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
