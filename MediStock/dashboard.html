@@ -26,10 +26,10 @@
           <li>Alert</li>
         </ul>
         <div class="rightNav">
-          <div class="searchbar">
+          <!-- <div class="searchbar">
             <input type="text" id="search" placeholder="Search by name..." />
             <i class="fa-solid fa-magnifying-glass"></i>
-          </div>
+          </div> -->
           <div class="userProfile">
             <i class="fa-solid fa-user"></i>
             <p>Profile</p>
@@ -40,8 +40,8 @@
         <h1>Welcome, Admin</h1>
         <aside>
           <a href="inventory.html" class="cards">
+            <i class="fa-solid fa-book" id="inventoryLogo"></i>
             <div>
-              <i class="fa-solid fa-book" id="inventoryLogo"></i>
               <p>Total items in inventory</p>
               <h1 id="totalStock"></h1>
             </div>
@@ -50,13 +50,14 @@
             <div>
               <i id="ls" class="fa-solid fa-circle-exclamation"></i>
               <p>Low Stock Items</p>
-              <h1 id="lowStock-count"></h1>
+              <h1 id="lowStockcount" class="lsc"></h1>
             </div>
           </a>
           <a href="expiredItems.html" class="cards" id="expired">
             <div>
               <i class="fa-solid fa-calendar-xmark"></i>
               <p>Expired Items</p>
+              <h1 id="expireditem" class="lsc"></h1>
             </div>
           </a>
 
@@ -70,14 +71,16 @@
           </div>
           <div class="cards">
             <i class="fa-solid fa-marker"></i>
-            <p>Recent Activity</p>
+            <p>History</p>
           </div>
         </aside>
         <div class="addCards">
-          <div class="miniCards">
+          <a href="addStock.html" class="miniCards">
+            <!-- <div> -->
             <i class="fa-solid fa-plus"></i>
             <p>Add new supply</p>
-          </div>
+            <!-- </div> -->
+          </a>
           <div class="miniCards">
             <i class="fa-solid fa-address-book"></i>
             <p>Add stock</p>

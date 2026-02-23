@@ -75,7 +75,8 @@ body {
 }
 #inventorySearch,
 #lowstocksearch,
-#search {
+#search,
+#expiredsearch {
   background-color: white;
   border: none;
   border-radius: 2rem;
@@ -147,6 +148,7 @@ body {
   font-size: 1.3rem;
   display: flex;
   color: #f0f4f8;
+  text-decoration: none;
   /* background-color: #007bff; */
 }
 .miniCards:hover {
@@ -167,15 +169,18 @@ body {
   margin-top: 2rem;
 }
 .inventory-container,
-.Lowstock-container {
-  padding: 20px;
+.Lowstock-container,
+.expired-container,
+.addcontainer {
+  /* padding: 20px; */
   color: #f0f4f8;
   padding-left: 10%;
   padding-right: 10%;
 }
 
 .inventory-header,
-.Lowstock-header {
+.Lowstock-header,
+.expired-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -195,7 +200,8 @@ body {
 }
 
 .inventory-filters,
-.Lowstock-filters {
+.Lowstock-filters,
+.expired-filter {
   margin: 20px 0;
   display: flex;
   gap: 10px;
@@ -214,7 +220,8 @@ body {
   padding: 18px;
   border-bottom: 1px solid #2a3d55;
 }
-.Lowstock-table {
+.Lowstock-table,
+.expired-table {
   width: 100%;
   border-collapse: collapse;
   background-color: #1e2f45;
@@ -224,7 +231,9 @@ body {
 }
 
 .Lowstock-table th,
-.Lowstock-table td {
+.Lowstock-table td,
+.expired-table th,
+.expired-table td {
   padding: 18px;
   border-bottom: 1px solid #2a3d55;
 }
@@ -244,7 +253,8 @@ body {
   color: #95a5a6;
 }
 #categoryFilter,
-#LSFilter {
+#LSFilter,
+#expiredFilter {
   border-radius: 0.8rem;
   font-size: 12px;
   padding-left: 7px;
@@ -255,4 +265,55 @@ body {
 }
 #inventoryLogo {
   color: #f1c40f;
+}
+.lsc,
+#totalStock {
+  margin-top: 0;
+  /* text-align: right; */
+}
+.cards div h1 {
+  font-size: 1.8rem;
+}
+#back,
+#backk {
+  font-size: 2rem;
+  margin-left: 6%;
+  cursor: pointer;
+}
+.productDetails {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+#addStockForm input,
+#category {
+  width: 45%;
+  padding: 10px;
+  margin-top: 25px;
+}
+#addStockForm button {
+  background: #1e40af;
+  color: white;
+  border: none;
+  padding: 13px;
+  cursor: pointer;
+  /* float: right; */
+  margin-top: 2rem;
+  border-radius: 1rem;
+}
+#addStockForm button:hover {
+  background-color: #f1c40f;
+  color: blue;
+}
+#backs {
+  font-size: 2rem;
+  cursor: pointer;
+  margin-left: 6%;
+}
+#addStock {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#category {
+  width: 46.8%;
 }

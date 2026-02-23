@@ -1,6 +1,5 @@
 let email = document.getElementById("email");
 let password = document.getElementById("password");
-let submit = document.getElementById("submit");
 let error = document.getElementById("error");
 let totalStock = document.getElementById("totalStock");
 
@@ -17,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       items = data;
       renderExpiredItems(data);
       renderLowstock(data);
+      updateCount(data);
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -25,10 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Filter all lowstock
 const LSfilter = document.getElementById("LSFilter");
-LSfilter.addEventListener("change", () => {
-  const selectedValue = LSfilter.value;
-  filterLowStock(selectedValue);
-});
+if (LSfilter) {
+  LSfilter.addEventListener("change", () => {
+    const selectedValue = LSfilter.value;
+    filterLowStock(selectedValue);
+  });
+}
 
 function filterLowStock(category) {
   let filteredItems = items; // items = your current inventory array
@@ -38,9 +40,23 @@ function filterLowStock(category) {
   renderLowstock(filteredItems, category); // re-render table with filtered data
 }
 
+//search
+const search = document.getElementById("lowstocksearch");
+if (search) {
+  search.addEventListener("input", () => {
+    const searchInput = search.value.trim().toLowerCase();
+    let result = items;
+    result = items.filter((item) =>
+      item.name.trim().toLowerCase().includes(searchInput),
+    );
+    renderLowstock(result);
+  });
+}
+
+//render the low stock list
 function renderLowstock(items, category) {
   const tableBody1 = document.getElementById("lowstockbody");
-  const count = document.getElementById("lowStock-count");
+  const count = document.getElementById("lowStockcount");
   if (!tableBody1) return;
   tableBody1.innerHTML = "";
 
@@ -48,10 +64,10 @@ function renderLowstock(items, category) {
   console.log(newItems.length);
   newItems.length === 0
     ? ((tableBody1.innerHTML = `No ${category} is in Low Stock`),
+      (count.style.color = "red"),
       ((tableBody1.style.color = "white"),
       (tableBody1.style.fontSize = "1.2rem"),
       (tableBody1.style.padding = "20rem"),
-      // (tableBody1.style.textAlign = "center"),
       (tableBody1.style.width = "100%")))
     : newItems.forEach((item) => {
         const row = document.createElement("tr");
@@ -79,7 +95,32 @@ function renderLowstock(items, category) {
         tableBody1.appendChild(row);
       });
   colorStatusButtons();
-  count.innerHTML = `Total`;
+}
+
+//display count
+function updateCount(items) {
+  const lowStockItems = items.filter((item) => item.quantity <= 20);
+
+  const element = document.getElementById("lowStockcount");
+  const totalSTockcount = document.getElementById("totalStock");
+  const expiredItem = document.getElementById("expireditem");
+
+  if (!element) return;
+  if (!totalSTockcount) return;
+  function getCurrentDate() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  }
+  let date = getCurrentDate();
+  newList = items.filter((item) => item.expiryDate <= date);
+
+  element.textContent = lowStockItems.length;
+  totalSTockcount.textContent = items.length;
+  expiredItem.textContent = newList.length;
 }
 
 function colorStatusButtons() {
@@ -88,13 +129,13 @@ function colorStatusButtons() {
     const status = btn.textContent.trim();
 
     if (status === "In Stock") {
-      btn.style.backgroundColor = "green";
+      btn.style.backgroundColor = "#27ae60";
       btn.style.color = "white";
     } else if (status === "Low Stock") {
       btn.style.backgroundColor = "pink";
       btn.style.color = "black";
     } else if (status === "Out of Stock") {
-      btn.style.backgroundColor = "red";
+      btn.style.backgroundColor = "#ad3737";
       btn.style.color = "white";
     }
     btn.style.border = "none";
@@ -108,11 +149,11 @@ function renderExpiredItems(items) {
   expiredTable = document.getElementById("expiredItems");
   if (!expiredTable) return;
   expiredTable.innerHTML = "";
-  console.log("Expired");
+  // console.log("Expired");
   function getCurrentDate() {
     const now = new Date();
     const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0"); // add leading 0
+    const month = String(now.getMonth() + 1).padStart(2, "0");
     const day = String(now.getDate()).padStart(2, "0");
 
     return `${year}-${month}-${day}`;
@@ -153,14 +194,25 @@ function renderExpiredItems(items) {
   colorStatusButtons();
 }
 
-submit.addEventListener("click", (e) => {
-  e.preventDefault();
-  if (email.value.trim() === "" || password.value.trim() === "") {
-    error.style.display = "block";
-    console.log("done");
-  } else {
-    console.log("qsbx");
-    error.style.display = "none";
-    window.location.href = "dashboard.html";
-  }
+//navigate button
+const back = document.getElementById("back");
+if(back)
+back.addEventListener("click", (e) => {
+  window.history.back();
 });
+
+//login authentication
+let submit = document.getElementById("submit");
+if (submit) {
+  submit.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (email.value.trim() === "" || password.value.trim() === "") {
+      error.style.display = "block";
+      console.log("done");
+    } else {
+      console.log("qsbx");
+      error.style.display = "none";
+      window.location.href = "dashboard.html";
+    }
+  });
+}

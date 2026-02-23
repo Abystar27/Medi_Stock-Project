@@ -25,23 +25,22 @@
         <li>Alert</li>
       </ul>
       <div class="rightNav">
-        <div class="searchbar">
-          <input type="text" id="search" placeholder="Search by name..." />
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
         <div class="userProfile">
           <i class="fa-solid fa-user"></i>
           <p>Profile</p>
         </div>
       </div>
     </div>
-    <div class="Lowstock-container">
-      <div class="Lowstock-header">
+    <div>
+      <i class="fa-solid fa-caret-left" id="back"></i>
+    </div>
+    <div class="expired-container">
+      <div class="expired-header">
         <h1>Expired Items</h1>
       </div>
-      <div class="Lowstock-filters">
-        <input type="text" id="lowstocksearch" placeholder="Search items..." />
-        <select id="LSFilter">
+      <div class="expired-filter">
+        <input type="text" id="expiredsearch" placeholder="Search by name..." />
+        <select id="expiredFilter">
           <option value="all">All Categories</option>
           <option value="Equipment">Equipment</option>
           <option value="Consumable">Consumables</option>
@@ -49,7 +48,7 @@
         </select>
       </div>
 
-      <table class="Lowstock-table">
+      <table class="expired-table">
         <thead>
           <tr>
             <th>Item</th>
