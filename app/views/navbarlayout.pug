@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title MediStock
+    link(rel="stylesheet", href="/CSS/style.css")
+    script(src="https://kit.fontawesome.com/328bbfc4a9.js", crossorigin="anonymous")
+  body
+    // Navbar for logged-in pages
+    .headNav
+      a(href="/dashboard")
+        .logo
+          img#logo(src="/Images/medi1.png")
+          h1 MediStock
+      ul.navLinks
+        li: a(href="/inventory") Inventory
+        li Order
+        li Report
+        li Alert
+      .rightNav
+        .userProfile
+          i.fa-solid.fa-user
+          p Profile
+    block content
+    script(src="/script.js")
