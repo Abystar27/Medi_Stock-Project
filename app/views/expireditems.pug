@@ -1,0 +1,32 @@
+extends navbarlayout
+
+block content
+  div
+    i.fa-solid.fa-caret-left#back
+
+  .expired-container
+    .expired-header
+      h1 Expired Items
+
+    .expired-filter
+      input#expiredsearch(type="text", placeholder="Search by name...")
+      select#expiredFilter
+        option(value="all") All Categories
+        option(value="Equipment") Equipment
+        option(value="Consumable") Consumables
+        option(value="Medicine") Medicine
+
+    table.expired-table
+      thead
+        tr
+          th Item
+          th Category
+          th Quantity
+          th Batch Number
+          th Expiry
+          th Status
+          th Actions
+      tbody#expiredItems
+
+block scripts
+  script(src="/script.js")

@@ -1,0 +1,29 @@
+extends navbarlayout
+
+block content
+  div
+    i.fa-solid.fa-caret-left#backs
+
+  .addcontainer
+    h2 Add Product
+
+    form#addStockForm
+      #addStock
+        input#name(type="text", placeholder="Product Name", required)
+
+        select#category
+          option(value="Equipment") Equipment
+          option(value="Consumable") Consumables
+          option(value="Medicine") Medicine
+
+        input#quantity(type="number", placeholder="Quantity", required)
+        input#price(type="number", placeholder="Price", required)
+        input#supplier(type="text", placeholder="Supplier", required)
+        input#expiryDate(type="date", required)
+
+      button(type="submit") Add Product
+
+    p.message#message
+
+block scripts
+  script(src="/addStock.js")

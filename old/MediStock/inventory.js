@@ -77,7 +77,7 @@ function renderInventory(items) {
       </td>
       `;
     row.addEventListener("click", () => {
-      window.location.href = `supplyDetails.html?id=${item.id}`;
+      window.location.href = `supplyDetails.html?id=${item.id}`;v
     });
     tableBody.appendChild(row);
   });

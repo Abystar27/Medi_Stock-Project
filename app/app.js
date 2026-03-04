@@ -29,6 +29,30 @@ app.get("/dashboard", function (req, res) {
   res.render("dashboard");
 });
 
+// Create a route for root - /
+app.get("/inventory", (req, res) => {
+  res.render("inventory");
+});
+
+// Create a route for root - /
+app.get("/lowstock", (req, res) => {
+  res.render("lowstock");
+});
+
+// Create a route for root - /
+app.get("/expireditems", (req, res) => {
+  res.render("expireditems");
+});
+
+// Create a route for root - /
+app.get("/addstock", (req, res) => {
+  res.render("addstock");
+});
+
+app.get("/supplyDetails", (req, res) => {
+  res.render("supplyDetails");
+});
+
 // Create a route for testing the db
 app.get("/db_test", function (req, res) {
   // Assumes a table called test_table exists in your database

@@ -77,13 +77,12 @@ function renderInventory(items) {
       </td>
       `;
     row.addEventListener("click", () => {
-      window.location.href = `supplyDetails.html?id=${item.id}`;
+      window.location.href = `/supplyDetails?id=${item.id}`;
     });
     tableBody.appendChild(row);
   });
   colorStatusButtons();
 }
-
 
 //color button
 function colorStatusButtons() {

@@ -1,0 +1,33 @@
+extends navbarlayout
+
+block content
+  // Back button
+  div
+    i.fa-solid.fa-caret-left#back
+
+  .Lowstock-container
+    .Lowstock-header
+      h1 Low Stocks
+
+    .Lowstock-filters
+      input#lowstocksearch(type="text", placeholder="Search items...")
+      select#LSFilter
+        option(value="all") All Categories
+        option(value="Equipment") Equipment
+        option(value="Consumable") Consumables
+        option(value="Medicine") Medicine
+
+    table.Lowstock-table
+      thead
+        tr
+          th Item
+          th Category
+          th Quantity
+          th Batch Number
+          th Expiry
+          th Status
+          th Actions
+      tbody#lowstockbody
+
+block scripts
+  script(src="/script.js")

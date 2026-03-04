@@ -1,0 +1,21 @@
+extends navbarlayout
+
+block content
+  // Back button
+  div
+    i.fa-solid.fa-caret-left#back
+
+  .productDetails
+    h1 Product Details
+    h2#name
+    p Category:
+      span#category
+    p Quantity:
+      span#quantity
+    p Batch:
+      span#batch
+    p Expiry:
+      span#expiry
+
+block scripts
+  script(src="/supplydetails.js")

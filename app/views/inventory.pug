@@ -1,0 +1,33 @@
+extends navbarlayout
+
+block content
+  div
+    i.fa-solid.fa-caret-left#back
+
+  .inventory-container
+    .inventory-header
+      h1 Inventory
+      button.add-btn + Add New Item
+
+    .inventory-filters
+      input#inventorySearch(type="text", placeholder="Search by name...")
+      select#categoryFilter
+        option(value="all") All Categories
+        option(value="Equipment") Equipment
+        option(value="Consumable") Consumables
+        option(value="Medicine") Medicine
+
+    table.inventory-table
+      thead
+        tr
+          th Item
+          th Category
+          th Quantity
+          th Batch Number
+          th Expiry
+          th Status
+          th Actions
+      tbody#inventorybody
+
+block scripts
+  script(src="/inventory.js")
