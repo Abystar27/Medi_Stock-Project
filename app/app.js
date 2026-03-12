@@ -53,13 +53,14 @@ app.get("/supplyDetails", (req, res) => {
   res.render("supplyDetails");
 });
 
+
 // Create a route for testing the db
 app.get("/db_test", function (req, res) {
   // Assumes a table called test_table exists in your database
-  sql = "select name from test_table";
+  sql = "select * from items where item_id = 1";
   db.query(sql).then((results) => {
     console.log(results);
-    res.send(results);
+    res.render("index", { items: results });
   });
 });
 
