@@ -31,7 +31,12 @@ app.get("/dashboard", function (req, res) {
 
 // Create a route for root - /
 app.get("/inventory", (req, res) => {
-  res.render("inventory");
+  // res.render("inventory");
+  sql = "select * from inventory";
+  db.query(sql).then((results) => {
+    console.log(results);
+    res.render("inventory", { items: results });
+  });
 });
 
 // Create a route for root - /
@@ -49,19 +54,26 @@ app.get("/addstock", (req, res) => {
   res.render("addstock");
 });
 
-app.get("/supplyDetails", (req, res) => {
-  res.render("supplyDetails");
-});
+// app.get("/supplyDetails", (req, res) => {
+//   res.render("supplyDetails");
+// });
 
+app.get("/productDetails/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("SELECT * FROM inventory WHERE item_id = ?", [id], (err, result) => {
+    if (err) throw err;
+    res.render("productDetails", { item: result[0] });
+  });
+});
 
 // Create a route for testing the db
 app.get("/db_test", function (req, res) {
   // Assumes a table called test_table exists in your database
-  sql = "select * from items where item_id = 1";
-  db.query(sql).then((results) => {
-    console.log(results);
-    res.render("index", { items: results });
-  });
+  // sql = "select * from inventory";
+  // db.query(sql).then((results) => {
+  //   console.log(results);
+  res.render("index", { items: results });
+  //   });
 });
 
 // Create a route for /goodbye

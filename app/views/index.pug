@@ -7,5 +7,13 @@ block content
       | Please 
       a(href="/login") Login
       
-      for item in items
-        p=item.item_name
+    //- table
+    //-   thead
+    //-     tr
+    //-       th Item
+    //-       th Category
+    //-   tbody
+    //-     for item in items
+    //-       tr
+    //-         td= item.item_name
+    //-         td= item.category

@@ -28,6 +28,24 @@ block content
           th Status
           th Actions
       tbody#inventorybody
+        for item in items
+          tr
+            td= item.item_name
+            td= item.category
+            td= item.Quantity
+            td= item.batch_no
+            td= new Date(item.expiry_date).toLocaleDateString()
+            td
+              if item.Quantity == 0
+                | Out of Stock
+              else if item.Quantity <= 30
+                | Low Stock 
+              else 
+                | In Stock
+            td 
+              a.edit-button(href=`/productDetails/${item.item_id}`) Edit
+
+
 
 block scripts
   script(src="/inventory.js")

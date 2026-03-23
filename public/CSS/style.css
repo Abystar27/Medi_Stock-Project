@@ -85,6 +85,13 @@ body {
   padding-left: 9px;
   font-size: 0.96rem;
 }
+.edit-button {
+  color: white;
+  background-color: green;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+}
 .searchbar i {
   margin-right: 2rem;
   font-size: 1.2rem;

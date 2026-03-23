@@ -1,20 +1,20 @@
-let items = [];
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("inventory.json")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to load JSON");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      items = data;
-      renderInventory(data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-});
+// let items = [];
+// document.addEventListener("DOMContentLoaded", () => {
+//   fetch("inventory.json")
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error("Failed to load JSON");
+//       }
+//       return response.json();
+//     })
+//     .then((data) => {
+//       items = data;
+//       renderInventory(data);
+//     })
+//     .catch((error) => {
+//       console.error("Error:", error);
+//     });
+// });
 
 // Filter all inventory
 const filter = document.getElementById("categoryFilter");
