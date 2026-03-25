@@ -4,18 +4,38 @@ block content
   // Back button
   div
     i.fa-solid.fa-caret-left#back
-
   .productDetails
+    console.log(product)
     h1 Product Details
-    h2#name
+    h2=product.id
+    h2#name= product.name  
     p Category:
-      span#category
+      span#category= product.category
     p Quantity:
-      span#quantity
+      span#quantity=  product.quantity
     p Batch:
-      span#batch
+      span#batch=  product.batch_no
     p Expiry:
-      span#expiry
+      span#expiry=  new Date(product.expiry).toLocaleDateString()
+    p Supplier:
+      span#expiry= product.supplier
+    p Created at:
+      span#expiry= new Date(product.created_at).toLocaleString()
+    p Last Updated:
+      span#expiry= new Date(product.updated_at).toLocaleString()
+    p 
+       if product.quantity == 0
+          span.badge.out-of-stock Out of Stock
+       else if product.quantity <= 30
+          span.badge.low-stock Low Stock
+       else 
+          span.badge.in-stock In Stock
+    //- p Price:
+    //-   span#expiry= product.price
+    form(action=`/products/delete/` + product.id method="POST")
+                button.delete-button(type="submit") Delete
+
+    
 
 block scripts
   script(src="/supplydetails.js")

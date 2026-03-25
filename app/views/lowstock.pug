@@ -26,8 +26,17 @@ block content
           th Batch Number
           th Expiry
           th Status
-          th Actions
       tbody#lowstockbody
+       for item in items
+          tr
+            td= item.name
+            td= item.category
+            td= item.quantity
+            td= item.batch_number 
+            td= new Date(item.expiry_date).toLocaleDateString()
+            td.status= item.status
+            //- td 
+            //-   a.edit-button(href=`/productDetails/` + item.item_id) Edit
 
 block scripts
   script(src="/script.js")

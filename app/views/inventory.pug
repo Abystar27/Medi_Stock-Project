@@ -30,20 +30,21 @@ block content
       tbody#inventorybody
         for item in items
           tr
-            td= item.item_name
+            td= item.name
             td= item.category
-            td= item.Quantity
-            td= item.batch_no
+            td= item.quantity
+            td= item.batch_number
             td= new Date(item.expiry_date).toLocaleDateString()
             td
-              if item.Quantity == 0
-                | Out of Stock
-              else if item.Quantity <= 30
-                | Low Stock 
+              if item.quantity == 0
+                span.badge.out-of-stock Out of Stock
+              else if item.quantity <= 30
+                span.badge.low-stock Low Stock
               else 
-                | In Stock
+                span.badge.in-stock In Stock
+
             td 
-              a.edit-button(href=`/productDetails/${item.item_id}`) Edit
+              a.edit-button(href=`/productDetails/` + item.id) Edit
 
 
 

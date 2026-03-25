@@ -97,7 +97,7 @@ function colorStatusButtons() {
       btn.style.backgroundColor = "pink";
       btn.style.color = "black";
     } else if (status === "Out of Stock") {
-      btn.style.backgroundColor = "#ad3737";
+      btn.style.backgroundColor = "#ad3737";f
       btn.style.color = "white";
     }
     btn.style.border = "none";
