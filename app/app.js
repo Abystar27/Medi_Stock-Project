@@ -1,8 +1,9 @@
 // Import express.js
 const express = require("express");
-
-// Create express app
 var app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// Create express app
 
 app.set("view engine", "pug");
 app.set("views", "./app/views");
@@ -14,6 +15,7 @@ app.use(express.static("public"));
 // Get the functions in the db.js file to use
 const db = require("./services/db");
 const { Product } = require("./Models/Product");
+const { Stock } = require("./Models/Stock");
 
 // Create a route for root - /
 app.get("/", function (req, res) {
@@ -25,9 +27,83 @@ app.get("/login", function (req, res) {
   res.render("login");
 });
 
-// Create a route for root - /
-app.get("/dashboard", function (req, res) {
+app.post("/login", (req, res) => {
   res.render("dashboard");
+  // const { email, password } = req.body;
+  // console.log(email);
+  // const sql = "SELECT * FROM users WHERE email = ? AND password_hash = ?";
+  // await db.query(sql, [email, password], (err, results) => {
+  //   if (err) return res.send("Database error");
+
+  //   if (results.length > 0) {
+  //     const user = results[0];
+
+  //     // Store user info in session
+  //     req.session.user_id = user.user_id;
+  //     req.session.role = user.role;
+  //     req.session.name = user.name;
+
+  //     res.redirect("/dashboard");
+  //   } else {
+  //     res.send("Invalid email or password");
+  //   }
+  // });
+});
+
+function requireLogin(req, res, next) {
+  if (!req.session.user_id) {
+    return res.redirect("/login");
+  }
+  next();
+}
+
+// Create a route for root - /
+app.get("/dashboard", (req, res) => {
+  res.render("dashboard");
+});
+
+app.get("/addNewProduct", (req, res) => {
+  res.render("addNewProduct");
+});
+
+app.post("/addNewProduct", async (req, res) => {
+  // console.log(req.body);
+  const {
+    name,
+    threshold,
+    category,
+    quantity,
+    supplier,
+    batch_number,
+    expiry_date,
+  } = req.body;
+  var product = new Stock();
+  await product.getNextItemid();
+  const item_id = product.item_id;
+  console.log(item_id);
+
+  console.log(req.body);
+
+  // res.redirect("/addstock");
+  const query = `INSERT INTO items_inventory (item_id, name, category, quantity,batch_number,low_stock_threshold, supplier, expiry_date) VALUES (?, ?, ?, ?, ?, ?,?,?)`;
+  db.query(
+    query,
+    [
+      item_id,
+      name,
+      category,
+      quantity,
+      batch_number,
+      threshold,
+      supplier,
+      expiry_date,
+    ],
+    (err, result) => {
+      if (err) return res.status(500).send(err);
+    },
+    console.log("done"),
+    // res.redirect("/addstock"),
+  );
 });
 
 // Create a route for root - /
@@ -40,9 +116,7 @@ app.get("/inventory", (req, res) => {
   });
 });
 
-// Create a route for root - /
 app.get("/lowstock", (req, res) => {
-  // res.render("lowstock");
   sql =
     "SELECT ls.inventory_id,ls.status,inv.name,inv.category,inv.batch_number,inv.expiry_date,ls.quantity,ls.threshold,ls.status \
    FROM low_stock AS ls \
@@ -56,39 +130,65 @@ app.get("/lowstock", (req, res) => {
 
 // Create a route for root - /
 app.get("/expireditems", (req, res) => {
-  // res.render("expireditems");
   sql =
-    "SELECT exi.inventory_id,inv.id,exi.status,inv.name,inv.category,inv.batch_number,exi.expiry_date,inv.quantity,exi.days_left \
+    "SELECT exi.inventory_id,inv.id,exi.status,inv.name,inv.category,inv.created_at,inv.batch_number,exi.expiry_date,inv.quantity,exi.days_left \
    FROM expired_items AS exi \
     JOIN items_inventory AS inv \
      ON exi.inventory_id = inv.id;";
   db.query(sql).then((results) => {
-    //console.log(results);
     res.render("expireditems", { items: results });
   });
 });
 
 app.get("/expiringitems", (req, res) => {
-  // res.render("expireditems");
   sql =
     "SELECT ex.inventory_id,inv.id,ex.status,inv.name,inv.category,inv.batch_number,ex.expiry_date,inv.quantity,ex.days_left,ex.created_at \
    FROM expiring_soon AS ex \
     JOIN items_inventory AS inv \
      ON ex.inventory_id = inv.id;";
   db.query(sql).then((results) => {
-    //console.log(results);
     res.render("expiringitems", { items: results });
   });
 });
 
-// Create a route for root - /
 app.get("/addstock", (req, res) => {
-  res.render("addstock");
+  sql = "SELECT * FROM items_inventory";
+  db.query(sql).then((results) => {
+    res.render("addstock", { items: results });
+  });
 });
 
-// app.get("/supplyDetails", (req, res) => {
-//   res.render("supplyDetails");
-// });
+app.post("/addstock", async (req, res) => {
+  const { item_id, quantity, supplier, batch_number, expiry_date } = req.body;
+  var product = new Stock(item_id);
+  await product.getStockName();
+  await product.getStockCategory();
+  await product.getStockThreshold();
+  const category = product.category;
+  const name = product.name;
+  const low_stock_threshold = product.low_stock_threshold;
+  console.log(req.body);
+
+  const query = `INSERT INTO items_inventory (item_id, name, category, quantity,batch_number,low_stock_threshold, supplier, expiry_date) VALUES (?, ?, ?, ?, ?, ?,?,?)`;
+  db.query(
+    query,
+    [
+      item_id,
+      name,
+      category,
+      quantity,
+      batch_number,
+      low_stock_threshold,
+      supplier,
+      expiry_date,
+    ],
+    (err, result) => {
+      if (err) return res.status(500).send(err);
+    },
+    console.log("done"),
+    // res.redirect("/addstock"),
+  );
+});
 
 app.get("/productDetails/:id", async (req, res) => {
   var stId = req.params.id;
@@ -112,6 +212,70 @@ app.post("/products/delete/:id", async (req, res) => {
   var product = new Product(id);
   await product.deleteProduct();
   res.redirect("/inventory");
+});
+
+app.post("/updateinventoryquantity/:id", async (req, res) => {
+  const id = req.params.id;
+  const { quantity } = req.body;
+
+  const sql = `UPDATE items_inventory SET quantity = ? WHERE id = ?`;
+
+  await db.query(sql, [quantity, id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.send("Error updating quantity");
+    }
+    res.send("Quantity updated successfully");
+  });
+  res.redirect("back");
+});
+
+app.post("/updateinventorybatchNo/:id", (req, res) => {
+  const id = req.params.id;
+  const { batch_number } = req.body;
+
+  const sql = `UPDATE items_inventory SET batch_number = ? WHERE id = ?`;
+
+  db.query(sql, [batch_number, id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.send("Error updating batchnumber");
+    }
+    res.send("BatchNumber updated successfully");
+  });
+  res.redirect("back");
+});
+
+app.post("/updateinventoryexpiry/:id", (req, res) => {
+  const id = req.params.id;
+  const { expiry_date } = req.body;
+
+  const sql = `UPDATE items_inventory SET expiry_date = ? WHERE id = ?`;
+
+  db.query(sql, [expiry_date, id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.send("Error updating expirydate");
+    }
+    res.send("Expirydate updated successfully");
+  });
+  res.redirect("back");
+});
+
+app.post("/updateinventorysupplier/:id", (req, res) => {
+  const id = req.params.id;
+  const { supplier } = req.body;
+
+  const sql = `UPDATE items_inventory SET supplier = ? WHERE id = ?`;
+
+  db.query(sql, [supplier, id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.send("Error updating supplier");
+    }
+    res.send("Supplier updated successfully");
+  });
+  res.redirect("back");
 });
 
 // Create a route for testing the db

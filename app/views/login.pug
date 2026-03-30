@@ -4,10 +4,11 @@ block content
   .loginPage
     img#userimage(src="/Images/medi complete.png")
 
-    form(method="POST", action="/login")
+    form(action=`/login/` method="POST")
       input#email(type="email", name="email", placeholder="Email", required)
       br
       input#password(type="password", name="password", placeholder="Password", required)
       p#error field can't be empty
       br
       button#submit(type="submit") Login
+

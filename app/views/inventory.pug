@@ -10,8 +10,10 @@ block content
       button.add-btn + Add New Item
 
     .inventory-filters
-      input#inventorySearch(type="text", placeholder="Search by name...")
-      select#categoryFilter
+    form(action="/inventory" method="GET")
+      input#inventorySearch(type="text", placeholder="Search by name..."  name="search")
+      button(type="submit") Search
+      select#categoryFilter(name="category")
         option(value="all") All Categories
         option(value="Equipment") Equipment
         option(value="Consumable") Consumables

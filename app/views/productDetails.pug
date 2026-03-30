@@ -11,14 +11,35 @@ block content
     h2#name= product.name  
     p Category:
       span#category= product.category
-    p Quantity:
-      span#quantity=  product.quantity
-    p Batch:
-      span#batch=  product.batch_no
-    p Expiry:
-      span#expiry=  new Date(product.expiry).toLocaleDateString()
-    p Supplier:
-      span#expiry= product.supplier
+    div.quantity
+      p Quantity:
+        span#quantity=  product.quantity
+      form.Qform(action=`/updateinventoryquantity/` + product.id  method="POST")
+          //- label Quantity
+          input(type="number" name="quantity" required)
+          button(type="submit") Update
+    div.quantity
+      p Batch:
+        span#batch=  product.batch_no
+      form.Qform(action=`/updateinventorybatchNo/` + product.id  method="POST")
+          //- label Batch Number
+          input(type="text" name="batch_number" required)
+          button(type="submit") Update
+    div.quantity
+      p Expiry:
+        span#expiry=  new Date(product.expiry).toLocaleDateString()
+      form.Qform(action=`/updateinventoryexpiry/` + product.id  method="POST")
+          //- label(for="expiry_date") Expiry Date
+          input(type="date" name="expiry_date" required)
+          button(type="submit") Update
+    div.quantity
+      p Supplier:
+        span#expiry= product.supplier
+      form.Qform(action=`/updateinventorysupplier/` + product.id  method="POST")
+          //- label(for="supplier") Supplier
+          input(type="text" name="supplier" required)
+          button(type="submit") Update
+
     p Created at:
       span#expiry= new Date(product.created_at).toLocaleString()
     p Last Updated:
@@ -30,8 +51,6 @@ block content
           span.badge.low-stock Low Stock
        else 
           span.badge.in-stock In Stock
-    //- p Price:
-    //-   span#expiry= product.price
     form(action=`/products/delete/` + product.id method="POST")
                 button.delete-button(type="submit") Delete
 

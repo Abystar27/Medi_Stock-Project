@@ -6,22 +6,24 @@ block content
 
   .addcontainer
     .inventory-header
-      h2 Add a new stock
+      h2 Add a new Product
       div
-        a.addStoc(href="/addNewProduct") 
-         p Add new Product
-    form#addStockForm(action=`/addstock/` method="POST")
+        a.addProduct(href="/addStock") 
+         p Add a batch
+    form#addStockForm(action=`/addNewProduct/` method="POST")
       #addStock
-        //- label Select Product
-        select#selectName(name="item_id" required )
-          each item in items
-            option(value=item.item_id)= item.name
+        input#name(type="text" name="name" placeholder="Product Name", required)
+        select#category(name="category")
+          option(value="Equipment") Equipment
+          option(value="Consumable") Consumables
+          option(value="Medicine") Medicine
         input#quantity(type="number", name="quantity" placeholder="Quantity", required)
         input#supplier(type="text",name="supplier" placeholder="Supplier", required)
         input(type="text",name="batch_number" placeholder="BatchNumber", required)
+        input(type="text",name="threshold" placeholder="Threshold", required)
         input#expiryDate(type="date", name="expiry_date" required)
 
-        button#addstock(type="submit") Add Batches
+        button#addproduct(type="submit") Add Product
    
 
     p#message Added to stock...

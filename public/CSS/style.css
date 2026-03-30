@@ -110,7 +110,21 @@ body {
   color: white;
   display: inline-block;
 }
-
+.quantity {
+  display: flex;
+}
+.Qform {
+  margin-top: 16px;
+  margin-left: 30px;
+}
+#message {
+  display: none;
+  font-size: 1.3em;
+}
+#addProduct {
+  text-decoration: none;
+  background-color: #ffde59;
+}
 .out-of-stock {
   background-color: #d9534f; /* red */
 }
@@ -330,6 +344,10 @@ body {
   margin-left: 10%;
   margin-right: 10%;
 }
+#selectName {
+  width: 12rem;
+  height: 2.5rem;
+}
 #addStockForm input,
 #category {
   width: 45%;
@@ -344,11 +362,40 @@ body {
   cursor: pointer;
   /* float: right; */
   margin-top: 2rem;
-  border-radius: 1rem;
+  border-radius: 7px;
 }
 #addStockForm button:hover {
   background-color: #f1c40f;
   color: blue;
+}
+.addStoc p {
+  width: 7.5rem;
+  padding: 1rem 1rem;
+  background-color: #f1c40f;
+  border-radius: 8px;
+  color: #212426;
+}
+.addStoc {
+  text-decoration: none;
+}
+.addProduct p {
+  width: 5.5rem;
+  padding: 1rem 1rem;
+  background-color: #f1c40f;
+  border-radius: 8px;
+  color: #212426;
+  /* margin-top: 5rem; */
+}
+.addProduct p:hover {
+  background-color: #1e40af;
+  color: white;
+}
+.addStoc p:hover {
+  background-color: #1e40af;
+  color: white;
+}
+.addProduct {
+  text-decoration: none;
 }
 #backs {
   font-size: 2rem;

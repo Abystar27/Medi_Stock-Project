@@ -13,6 +13,7 @@ class Product {
   supplier;
   created_at;
   updated_at;
+  low_stock_threshold;
   // price;
 
   constructor(id) {
@@ -33,6 +34,17 @@ class Product {
     await db.query(sql, [this.id]);
     // console.log(results);
   }
+
+  // async UpdateProduct() {
+  //   const sql = `UPDATE items_inventory SET quantity = ? WHERE id = ?`;
+  //   db.query(sql, [quantity, id], (err, result) => {
+  //     if (err) {
+  //       console.error(err);
+  //       return res.send("Error updating quantity");
+  //     }
+  //     res.send("Quantity updated successfully");
+  //   });
+  // }
 
   async getProductCategory() {
     var sql = "SELECT * from items_inventory where id = ?";
@@ -66,6 +78,13 @@ class Product {
     var sql = "SELECT * FROM items_inventory where id = ?";
     const results = await db.query(sql, [this.id]);
     this.supplier = results[0].supplier;
+    // console.log(results);
+  }
+
+  async getProductThreshold() {
+    var sql = "SELECT * FROM items_inventory where id = ?";
+    const results = await db.query(sql, [this.id]);
+    this.low_stock_threshold = results[0].low_stock_threshold;
     // console.log(results);
   }
 
