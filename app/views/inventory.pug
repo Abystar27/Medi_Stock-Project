@@ -7,17 +7,19 @@ block content
   .inventory-container
     .inventory-header
       h1 Inventory
-      button.add-btn + Add New Item
+      a.add-btn(href="/addStock")
+       p + Add New Stock
+
 
     .inventory-filters
     form(action="/inventory" method="GET")
-      input#inventorySearch(type="text", placeholder="Search by name..."  name="search")
-      button(type="submit") Search
-      select#categoryFilter(name="category")
-        option(value="all") All Categories
-        option(value="Equipment") Equipment
-        option(value="Consumable") Consumables
-        option(value="Medicine") Medicine
+      input#inventorySearch(type="text", placeholder="Search by name..."  name="search", value=search || "")
+      button.searchbtn(type="submit") Search
+    select#categoryFilter(name="category")
+      option(value="all" selected=(!category || category === 'all')) All Categories
+      option(value="Equipment" selected=(category === 'Equipment')) Equipment
+      option(value="Consumable" selected=(category === 'Consumable')) Consumables
+      option(value="Medicine" selected=(category === 'Medicine')) Medicine
 
     table.inventory-table
       thead
@@ -40,14 +42,16 @@ block content
             td
               if item.quantity == 0
                 span.badge.out-of-stock Out of Stock
-              else if item.quantity <= 30
+              else if item.quantity <= item.low_stock_threshold
                 span.badge.low-stock Low Stock
               else 
                 span.badge.in-stock In Stock
 
             td 
               a.edit-button(href=`/productDetails/` + item.id) Edit
-
+        if items.length === 0
+          tr
+             td(colspan="7") No items found
 
 
 block scripts

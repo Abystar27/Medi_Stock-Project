@@ -10,13 +10,10 @@ block content
       h1 Low Stocks
 
     .Lowstock-filters
-      input#lowstocksearch(type="text", placeholder="Search items...")
-      select#LSFilter
-        option(value="all") All Categories
-        option(value="Equipment") Equipment
-        option(value="Consumable") Consumables
-        option(value="Medicine") Medicine
-
+    form(action="/lowstock" method="GET")
+      input#inventorySearch(type="text", placeholder="Search by name..."  name="search", value=search || "")
+      button.searchbtn(type="submit") Search
+    
     table.Lowstock-table
       thead
         tr
@@ -37,6 +34,10 @@ block content
             td.status= item.status
             //- td 
             //-   a.edit-button(href=`/productDetails/` + item.item_id) Edit
+       if items.length === 0
+          tr
+             td(colspan="7") No Low stock items found
+
 
 block scripts
   script(src="/script.js")

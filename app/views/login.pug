@@ -2,12 +2,20 @@ extends layout
 
 block content
   .loginPage
-    img#userimage(src="/Images/medi complete.png")
+    div
+      img#userimage(src="/Images/medi complete.png")
+      h1 Welcome  to...
+      p Medi-Stock is a user-friendly web apllication designed to help hospitals efficiently track, manage and update their medical supplies and equipment.
 
-    form(action=`/login/` method="POST")
-      input#email(type="email", name="email", placeholder="Email", required)
+    form(action=`/authenticate/` method="POST")
+      p Welcome to MediStock
+      label(for="")  Email
+      br 
+      input#email(type="email", name="email",  required)
       br
-      input#password(type="password", name="password", placeholder="Password", required)
+      label(for="")  Password
+      br
+      input#password(type="password", name="password", required)
       p#error field can't be empty
       br
       button#submit(type="submit") Login

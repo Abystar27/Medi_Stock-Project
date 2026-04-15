@@ -30,21 +30,13 @@ class Product {
 
   // Gets the student name from the database
   async deleteProduct() {
+    
     var sql = "DELETE FROM items_inventory WHERE id = ?";
     await db.query(sql, [this.id]);
     // console.log(results);
   }
 
-  // async UpdateProduct() {
-  //   const sql = `UPDATE items_inventory SET quantity = ? WHERE id = ?`;
-  //   db.query(sql, [quantity, id], (err, result) => {
-  //     if (err) {
-  //       console.error(err);
-  //       return res.send("Error updating quantity");
-  //     }
-  //     res.send("Quantity updated successfully");
-  //   });
-  // }
+ 
 
   async getProductCategory() {
     var sql = "SELECT * from items_inventory where id = ?";

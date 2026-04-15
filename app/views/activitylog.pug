@@ -1,0 +1,29 @@
+extends navbarlayout
+
+block content
+  div
+    i.fa-solid.fa-caret-left#back
+
+  .inventory-container
+    .activityHeader
+      h1 History
+    //-   button.add-btn + Add New Item
+
+    table.activitylogtable
+      thead
+        tr
+          th No
+          th Name
+          th Action
+          th TimeStamp
+      tbody#inventorybody
+        for item in items
+          tr
+            td= item.log_id
+            td= item.name
+            td= item.action
+            td= new Date(item.timestamp).toLocaleString()
+
+
+block scripts
+  script(src="/inventory.js")

@@ -5,7 +5,7 @@ block content
     i.fa-solid.fa-caret-left#backs
 
   .addcontainer
-    .inventory-header
+    .addContainer
       h2 Add a new stock
       div
         a.addStoc(href="/addNewProduct") 
@@ -18,10 +18,10 @@ block content
             option(value=item.item_id)= item.name
         input#quantity(type="number", name="quantity" placeholder="Quantity", required)
         input#supplier(type="text",name="supplier" placeholder="Supplier", required)
-        input(type="text",name="batch_number" placeholder="BatchNumber", required)
+        input#batchno(type="text",name="batch_number" placeholder="BatchNumber", required)
         input#expiryDate(type="date", name="expiry_date" required)
 
-        button#addstock(type="submit") Add Batches
+        button(type="submit") Add Batches
    
 
     p#message Added to stock...

@@ -36,8 +36,12 @@ body {
   color: white;
   text-decoration: none;
 }
+.navLinks li a:hover {
+  color: yellow;
+  text-decoration: none;
+}
 .navLinks li:hover {
-  color: gray;
+  color: yellow;
 }
 .headNav p {
   margin-left: 6px;
@@ -60,6 +64,9 @@ body {
 }
 .userProfile i {
   font-size: 1.2rem;
+}
+#menu {
+  display: none;
 }
 .logo {
   display: flex;
@@ -97,6 +104,8 @@ body {
   border-color: transparent;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 0.8rem;
+  margin-top: 1.1rem;
 }
 .delete-button:hover {
   background-color: yellow;
@@ -111,11 +120,54 @@ body {
   display: inline-block;
 }
 .quantity {
-  display: flex;
+  display: block;
+  width: 35%;
 }
 .Qform {
   margin-top: 16px;
-  margin-left: 30px;
+  margin-left: 0px;
+  display: none;
+}
+.Qform.open {
+  display: block;
+}
+.Qform input {
+  background-color: transparent;
+  border-radius: 6px;
+  border-color: white;
+  color: white;
+  padding: 3px;
+  width: 100%;
+}
+.Qform button {
+  font-size: 0.75rem;
+  padding: 3px;
+  margin-left: 5px;
+  background-color: rgb(34, 193, 111);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+  float: right;
+}
+#name {
+  margin-top: 3rem;
+}
+#update {
+  background-color: #27ae60;
+  width: 3rem;
+  padding: 4px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#category,
+#quantity,
+#batch,
+#expiry {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-left: 0.7rem;
 }
 #message {
   display: none;
@@ -126,16 +178,16 @@ body {
   background-color: #ffde59;
 }
 .out-of-stock {
-  background-color: #d9534f; /* red */
+  background-color: #d9534f;
 }
 
 .low-stock {
-  background-color: #ffde59; /* orange */
+  background-color: #ffde59;
   color: black;
 }
 
 .in-stock {
-  background-color: #5cb85c; /* green */
+  background-color: #5cb85c;
   color: black;
 }
 .status {
@@ -143,6 +195,9 @@ body {
 }
 .expire {
   color: rgb(225, 66, 66);
+}
+.expiring {
+  color: rgb(201, 145, 145);
 }
 .searchbar i {
   margin-right: 2rem;
@@ -227,10 +282,62 @@ body {
   flex-wrap: wrap;
   margin-top: 2rem;
 }
+.adminpage {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 3rem;
+  width: 80%;
+}
+.adminpage form {
+  margin-top: 3rem;
+}
+.adminPage {
+  margin-bottom: 1rem;
+}
+.adminPage label {
+  font-size: 1rem;
+}
+.logout {
+  text-decoration: none;
+  background-color: yellow;
+  padding: 5px;
+  margin-left: 7rem;
+  border-radius: 3px;
+  float: right;
+}
+.adminback {
+  text-decoration: none;
+  color: white;
+  font-weight: bolder;
+  font-size: 1rem;
+}
+.adminPage input {
+  margin-left: 1rem;
+  border-radius: 4px;
+  height: 20px;
+  width: 14rem;
+  background-color: transparent;
+  color: white;
+  border-color: rgb(168, 168, 121);
+}
+.adminPage select {
+  margin-left: 1rem;
+  border-radius: 4px;
+  height: 20px;
+  background-color: transparent;
+  color: grey;
+  border-color: rgb(168, 168, 121);
+}
+.adminpage form button {
+  background-color: rgb(145, 145, 220);
+  color: white;
+  padding: 7px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 .inventory-container,
 .Lowstock-container,
-.expired-container,
-.addcontainer {
+.expired-container {
   /* padding: 20px; */
   color: #f0f4f8;
   padding-left: 10%;
@@ -238,6 +345,13 @@ body {
   margin-bottom: 2rem;
 }
 
+.addcontainer {
+  /* padding: 20px; */
+  color: #f0f4f8;
+  padding-left: 20%;
+  padding-right: 20%;
+  margin-bottom: 2rem;
+}
 .inventory-header,
 .Lowstock-header,
 .expired-header {
@@ -245,14 +359,18 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-
+.activitylogHeader {
+  margin-top: 1rem;
+}
 .add-btn {
-  background-color: #2ecc71;
-  color: #0c1d2f;
-  padding: 10px 20px;
+  background-color: green;
+  color: white;
   border: none;
+  padding: 0px 10px;
   border-radius: 6px;
   cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .add-btn:hover {
@@ -262,21 +380,44 @@ body {
 .inventory-filters,
 .Lowstock-filters,
 .expired-filter {
-  margin: 20px 0;
+  margin: 10px 0;
   display: flex;
   gap: 10px;
 }
-
+.Lowstock-filters {
+  margin-top: 2px;
+}
+.searchbtn {
+  background-color: #ffde59;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 1rem;
+}
 .inventory-table {
   width: 100%;
   border-collapse: collapse;
   background-color: #1e2f45;
   border-radius: 8px;
   overflow: hidden;
+  margin-top: 2rem;
 }
-
+.activitylogtable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1e2f45;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.activitylogtable td {
+  padding-left: 6rem;
+  /* padding-right: 2rem; */
+  padding-top: 1.3rem;
+  padding-bottom: 0.8rem;
+}
 .inventory-table th,
-.inventory-table td {
+.inventory-table td,
+.activitylogtable th {
   padding: 18px;
   border-bottom: 1px solid #2a3d55;
 }
@@ -318,7 +459,9 @@ body {
   border-radius: 0.8rem;
   font-size: 12px;
   padding-left: 7px;
+  padding: 5px 10px;
   text-align: center;
+  margin-top: 10px;
 }
 #ls {
   color: rgb(216, 54, 54);
@@ -340,19 +483,53 @@ body {
   margin-left: 6%;
   cursor: pointer;
 }
-.productDetails {
+.productDetails,
+.productbody {
   margin-left: 10%;
   margin-right: 10%;
+  width: 80%;
+  font-size: 1rem;
+}
+.productbody {
+  display: block;
+}
+.productBody {
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 60%;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.productfoot {
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 17%;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.productDetails h1 {
+  font-size: 1.3rem;
 }
 #selectName {
-  width: 12rem;
+  width: 48%;
   height: 2.5rem;
+  margin-top: 29px;
+  font-size: 0.9rem;
+}
+#supplier,
+#batchno,
+#expiryDate {
+  font-size: 0.9rem;
 }
 #addStockForm input,
 #category {
   width: 45%;
   padding: 10px;
-  margin-top: 25px;
+  margin-top: 10px;
 }
 #addStockForm button {
   background: #1e40af;
@@ -409,4 +586,381 @@ body {
 }
 #category {
   width: 46.8%;
+}
+.addContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.navlink {
+  list-style-type: none;
+  text-decoration: none;
+  background-color: rgb(185, 157, 157);
+  position: absolute;
+  width: 80%;
+  display: flex;
+  margin-top: 0rem;
+  text-align: end;
+  padding: 4% 10%;
+  justify-content: center;
+  background-color: #1e2f45;
+}
+.navlink li {
+  margin-right: 3rem;
+  cursor: pointer;
+}
+.navlink li a {
+  color: white;
+  text-decoration: none;
+}
+.navlink li a:hover {
+  color: yellow;
+  text-decoration: none;
+}
+.navlink li:hover {
+  color: yellow;
+}
+.mobilenav {
+  display: none;
+}
+.mobilenav.open {
+  display: block;
+}
+.adminpage table {
+  margin-top: 5rem;
+}
+@media (max-width: 1200px) {
+  .mainBody {
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 1rem;
+  }
+  .headNav {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .miniCards i {
+    margin-top: 1.4rem;
+    font-size: 1.3rem;
+  }
+  .miniCards p {
+    margin-left: 0.7rem;
+    color: #b0c4d4;
+    font-size: 1.1rem;
+    margin-top: 1.4rem;
+  }
+  .miniCards {
+    height: 4rem;
+    width: 24%;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 7px;
+    margin-bottom: 2rem;
+    background-color: #1e2f45;
+    font-size: 1.3rem;
+    /* background-color: #007bff; */
+  }
+  .inventory-container,
+  .Lowstock-container,
+  .expired-container {
+    /* padding: 20px; */
+    color: #f0f4f8;
+    padding-left: 7%;
+    padding-right: 7%;
+    margin-bottom: 2rem;
+  }
+  .addcontainer {
+    /* padding: 20px; */
+    color: #f0f4f8;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .inventory-header h1,
+  .Lowstock-header h1,
+  .expired-header h1,
+  .activityHeader h1 {
+    font-size: 1.6rem;
+  }
+  .add-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 0px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+  .inventory-table th,
+  .inventory-table td,
+  .activitylogtable th,
+  .Lowstock-table th,
+  .Lowstock-table td,
+  .expired-table th,
+  .expired-table td,
+  .activitylogtable th,
+  .activitylogtable td {
+    padding: 10px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #2a3d55;
+  }
+  .badge {
+    font-size: 0.7rem;
+  }
+  .addcontainer {
+    /* padding: 20px; */
+    color: #f0f4f8;
+    padding-left: 7%;
+    padding-right: 7%;
+    margin-bottom: 2rem;
+  }
+  .addContainer h2 {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+  }
+  .adminpage h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .mainBody {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 1rem;
+  }
+  .cards {
+    height: 4rem;
+    width: 40%;
+    padding: 1rem;
+    padding-top: 1.5rem;
+    font-size: 1.2rem;
+    border-radius: 7px;
+    margin-bottom: 2rem;
+  }
+  #logo {
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-top: 18px;
+  }
+  .logo h1 {
+    margin-left: 8px;
+    font-size: 1.4rem;
+    margin-top: 1.8rem;
+  }
+  .navLinks li {
+    margin-right: 1.9rem;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  .headNav {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+  .userProfile i,
+  .userProfile p {
+    font-size: 1rem;
+  }
+  .navLinks li {
+    margin-right: 1rem;
+  }
+  .mainBody h1 {
+    font-size: 1.4rem;
+  }
+  .inventory-table th,
+  .inventory-table td,
+  .activitylogtable th,
+  .Lowstock-table th,
+  .Lowstock-table td,
+  .expired-table th,
+  .expired-table td {
+    padding: 10px;
+    font-size: 0.7rem;
+    border-bottom: 1px solid #2a3d55;
+  }
+  .badge {
+    font-size: 0.7rem;
+  }
+  #back,
+  #backk {
+    font-size: 2rem;
+    margin-left: 1%;
+    cursor: pointer;
+  }
+  #inventorySearch,
+  #lowstocksearch,
+  #search,
+  #expiredsearch {
+    background-color: white;
+    border: none;
+    border-radius: 2rem;
+    height: 1.7rem;
+    width: 14rem;
+    padding-left: 9px;
+    font-size: 0.8rem;
+  }
+  #addStock {
+    display: block;
+  }
+  #addStockForm input {
+    width: 70%;
+    padding: 10px;
+    margin-top: 25px;
+  }
+  #selectName {
+    width: 74%;
+  }
+  .addStoc p {
+    width: 6rem;
+    padding: 0.6rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  .addProduct p {
+    width: 4rem;
+    padding: 0.6rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  #addStockForm button {
+    background: #1e40af;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    /* float: right; */
+    margin-top: 2rem;
+    border-radius: 7px;
+    font-size: 0.8rem;
+  }
+  #category {
+    width: 73%;
+  }
+  .productBody {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+  }
+  .quantity {
+    display: block;
+    width: 45%;
+  }
+}
+
+@media (max-width: 550px) {
+  .mainBody {
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 90%;
+    margin-top: 1rem;
+  }
+  .inventory-container,
+  .Lowstock-container,
+  .expired-container,
+  .addcontainer {
+    /* padding: 20px; */
+    color: #f0f4f8;
+    padding-left: 4%;
+    padding-right: 4%;
+    margin-bottom: 2rem;
+  }
+  .cards {
+    height: 4rem;
+    width: 35%;
+    padding: 1rem;
+    padding-top: 1.3rem;
+    font-size: 1rem;
+    border-radius: 7px;
+    margin-bottom: 2rem;
+  }
+  .mainBody h1 {
+    font-size: large;
+  }
+  .cards i {
+    font-size: 1rem;
+    color: white;
+  }
+  .miniCards i {
+    margin-top: 0.1rem;
+    font-size: 1rem;
+  }
+  .miniCards p {
+    margin-left: 0rem;
+    color: #b0c4d4;
+    font-size: 0.9rem;
+    margin-top: 3px;
+  }
+  .miniCards {
+    display: block;
+    height: 4rem;
+    width: 20%;
+    padding: 7px 1rem;
+  }
+  .inventory-table th,
+  .inventory-table td,
+  .activitylogtable th,
+  .expired-table th,
+  .expired-table td {
+    padding: 10px;
+    font-size: 0.5rem;
+    border-bottom: 1px solid #2a3d55;
+  }
+  .badge {
+    font-size: 0.4rem;
+  }
+  .add-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 0px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.7rem;
+  }
+  .searchbtn {
+    background-color: #ffde59;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 1rem;
+    font-size: 0.8rem;
+  }
+  #inventorySearch,
+  #lowstocksearch,
+  #search,
+  #expiredsearch {
+    background-color: white;
+    border: none;
+    border-radius: 2rem;
+    height: 1.7rem;
+    width: 10rem;
+    padding-left: 9px;
+    font-size: 0.8rem;
+  }
+  .navLinks {
+    display: none;
+  }
+  #menu {
+    display: block;
+    margin-top: 1.8rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  .userProfile {
+    margin-right: 1.7rem;
+  }
+  .quantity {
+    display: block;
+    width: 45%;
+  }
+  .productBody {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+  }
 }

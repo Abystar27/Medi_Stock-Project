@@ -5,7 +5,7 @@ block content
     i.fa-solid.fa-caret-left#backs
 
   .addcontainer
-    .inventory-header
+    .addContainer
       h2 Add a new Product
       div
         a.addProduct(href="/addStock") 
@@ -19,8 +19,8 @@ block content
           option(value="Medicine") Medicine
         input#quantity(type="number", name="quantity" placeholder="Quantity", required)
         input#supplier(type="text",name="supplier" placeholder="Supplier", required)
-        input(type="text",name="batch_number" placeholder="BatchNumber", required)
-        input(type="text",name="threshold" placeholder="Threshold", required)
+        input#batchno(type="text",name="batch_number" placeholder="BatchNumber", required)
+        input#threshold(type="text",name="threshold" placeholder="Threshold", required)
         input#expiryDate(type="date", name="expiry_date" required)
 
         button#addproduct(type="submit") Add Product

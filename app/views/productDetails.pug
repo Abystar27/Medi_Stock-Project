@@ -5,12 +5,13 @@ block content
   div
     i.fa-solid.fa-caret-left#back
   .productDetails
-    console.log(product)
+    //- console.log(product)
     h1 Product Details
-    h2=product.id
-    h2#name= product.name  
+    //- h2=product.id
+    h2#name= product.name 
     p Category:
       span#category= product.category
+  .productBody 
     div.quantity
       p Quantity:
         span#quantity=  product.quantity
@@ -39,11 +40,14 @@ block content
           //- label(for="supplier") Supplier
           input(type="text" name="supplier" required)
           button(type="submit") Update
-
+  .productbody
+    p Threshold: 
+      span#category= product.low_stock_threshold
     p Created at:
       span#expiry= new Date(product.created_at).toLocaleString()
     p Last Updated:
       span#expiry= new Date(product.updated_at).toLocaleString()
+  .productfoot
     p 
        if product.quantity == 0
           span.badge.out-of-stock Out of Stock
@@ -51,6 +55,7 @@ block content
           span.badge.low-stock Low Stock
        else 
           span.badge.in-stock In Stock
+    p#update Edit
     form(action=`/products/delete/` + product.id method="POST")
                 button.delete-button(type="submit") Delete
 

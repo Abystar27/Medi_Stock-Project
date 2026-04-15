@@ -9,12 +9,10 @@ block content
       h1 Expiring Items
 
     .expired-filter
-      input#expiredsearch(type="text", placeholder="Search by name...")
-      select#expiredFilter
-        option(value="all") All Categories
-        option(value="Equipment") Equipment
-        option(value="Consumable") Consumables
-        option(value="Medicine") Medicine
+    form(action="/expiringitems" method="GET")
+      input#inventorySearch(type="text", placeholder="Search by name..."  name="search", value=search || "")
+      button.searchbtn(type="submit") Search
+    
 
     table.expired-table
       thead
@@ -26,7 +24,6 @@ block content
           th Expiry
           th Days left
           th Status
-          th Created At
           th Action
       tbody#expiredItems
        for item in items
@@ -37,10 +34,11 @@ block content
             td= item.batch_number 
             td= new Date(item.expiry_date).toLocaleDateString()
             td= item.days_left
-            td.expire= item.status
-            td= new Date(item.created_at).toLocaleString()
+            td.expiring= item.status
             td 
               a.edit-button(href=`/productDetails/` + item.id) Edit
-
+       if items.length === 0
+          tr
+             td(colspan="7") No Expiring items found
 block scripts
   script(src="/script.js")

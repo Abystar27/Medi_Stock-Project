@@ -114,3 +114,10 @@ if (back) {
     window.history.back();
   });
 }
+
+const categoryFilter = document.getElementById("categoryFilter");
+categoryFilter.addEventListener("change", () => {
+  const selectedCategory = categoryFilter.value;
+  // Redirect to inventory page with category query param
+  window.location.href = `/inventory?category=${selectedCategory}`;
+});

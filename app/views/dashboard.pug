@@ -27,17 +27,18 @@ block content
         .cards
           i.fa-solid.fa-star-half
           p Pending Order
-        .cards
-          i.fa-solid.fa-marker
-          p History
+        a.cards#expired(href="/activitylog")
+          div 
+            i.fa-solid.fa-marker
+            p History
 
       .addCards
-        a.miniCards(href="/addStock")
+        a.miniCards(href="/addNewProduct")
           i.fa-solid.fa-plus
-          p Add new supply
-        .miniCards
+          p Add new Product
+        a.miniCards(href="/addStock")
           i.fa-solid.fa-address-book
-          p Add stock
+          p Update Stock
         .miniCards
           i.fa-solid.fa-pen
           p Create Order

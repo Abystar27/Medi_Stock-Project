@@ -7,15 +7,13 @@ app.use(express.json());
 
 app.set("view engine", "pug");
 app.set("views", "./app/views");
-
-// Add static files location
-// app.use(express.static(__dirname + "/public"));
 app.use(express.static("public"));
 
 // Get the functions in the db.js file to use
 const db = require("./services/db");
 const { Product } = require("./Models/Product");
 const { Stock } = require("./Models/Stock");
+const { user } = require("./Models/user");
 
 // Create a route for root - /
 app.get("/", function (req, res) {
@@ -27,35 +25,51 @@ app.get("/login", function (req, res) {
   res.render("login");
 });
 
-app.post("/login", (req, res) => {
-  res.render("dashboard");
-  // const { email, password } = req.body;
-  // console.log(email);
-  // const sql = "SELECT * FROM users WHERE email = ? AND password_hash = ?";
-  // await db.query(sql, [email, password], (err, results) => {
-  //   if (err) return res.send("Database error");
-
-  //   if (results.length > 0) {
-  //     const user = results[0];
-
-  //     // Store user info in session
-  //     req.session.user_id = user.user_id;
-  //     req.session.role = user.role;
-  //     req.session.name = user.name;
-
-  //     res.redirect("/dashboard");
-  //   } else {
-  //     res.send("Invalid email or password");
-  //   }
-  // });
+app.post("/authenticate", async function (req, res) {
+  params = req.body;
+  var User = new user(params.email);
+  try {
+    uId = await User.getIdFromEmail();
+    if (uId) {
+      match = await User.authenticate(params.password);
+      console.log("checking");
+      if (match) {
+        res.redirect("/dashboard");
+      } else {
+        res.status("invalid password");
+      }
+    } else {
+      res.status("invalid email");
+    }
+  } catch (err) {
+    console.error(`Error while comparing `, err.message);
+  }
 });
 
-function requireLogin(req, res, next) {
-  if (!req.session.user_id) {
-    return res.redirect("/login");
+app.post("/set-password", async function (req, res) {
+  params = req.body;
+  var User = new user(params.email);
+  User.username = params.username;
+  User.role = params.role;
+  try {
+    uId = await User.getIdFromEmail();
+    if (uId) {
+      // If a valid, existing user is found, set the password and redirect to the users single-student page
+      await User.setUserPassword(params.password);
+      console.log(req.session.id);
+      res.send("Password set successfully");
+    } else {
+      // If no existing user is found, add a new one
+      newId = await User.addUser(params.password);
+      res.status(
+        "Perhaps a page where a new user sets a programme would be good here",
+      );
+      res.redirect("/adminprofile");
+    }
+  } catch (err) {
+    console.error(`Error while adding password `, err.message);
   }
-  next();
-}
+});
 
 // Create a route for root - /
 app.get("/dashboard", (req, res) => {
@@ -64,6 +78,19 @@ app.get("/dashboard", (req, res) => {
 
 app.get("/addNewProduct", (req, res) => {
   res.render("addNewProduct");
+});
+
+app.get("/adminprofile", (req, res) => {
+  sql = "select * from users";
+  db.query(sql).then((results) => {
+    //console.log(results);
+    res.render("adminprofile", { items: results });
+  });
+});
+
+app.get("/logout", function (req, res) {
+  req.session.destroy();
+  res.redirect("/login");
 });
 
 app.post("/addNewProduct", async (req, res) => {
@@ -106,53 +133,149 @@ app.post("/addNewProduct", async (req, res) => {
   );
 });
 
-// Create a route for root - /
 app.get("/inventory", (req, res) => {
-  // res.render("inventory");
-  sql = "select * from items_inventory";
+  const search = req.query.search;
+  const category = req.query.category;
+
+  let sql = "SELECT * FROM items_inventory";
+  const values = [];
+
+  if (search && search.trim() !== "") {
+    sql += " WHERE name LIKE ?";
+    values.push(`%${search}%`);
+  } else if (category && category !== "all") {
+    sql += " WHERE category = ?";
+    values.push(category);
+  }
+
+  db.query(sql, values)
+    .then((results) => {
+      res.render("inventory", { items: results, search, category });
+    })
+    .catch((err) => res.status(500).send(err));
+});
+
+app.get("/activitylog", (req, res) => {
+  sql = "select * from activity_logs";
   db.query(sql).then((results) => {
     //console.log(results);
-    res.render("inventory", { items: results });
+    res.render("activitylog", { items: results });
   });
 });
 
 app.get("/lowstock", (req, res) => {
-  sql =
-    "SELECT ls.inventory_id,ls.status,inv.name,inv.category,inv.batch_number,inv.expiry_date,ls.quantity,ls.threshold,ls.status \
-   FROM low_stock AS ls \
-    JOIN items_inventory AS inv \
-     ON ls.inventory_id = inv.id;";
-  db.query(sql).then((results) => {
-    //console.log(results);
-    res.render("lowstock", { items: results });
-  });
+  const search = req.query.search;
+
+  let sql = `
+    SELECT 
+      ls.inventory_id,
+      ls.status,
+      inv.name,
+      inv.category,
+      inv.batch_number,
+      inv.expiry_date,
+      ls.quantity,
+      ls.threshold
+    FROM low_stock AS ls
+    JOIN items_inventory AS inv 
+      ON ls.inventory_id = inv.id
+  `;
+
+  const values = [];
+
+  if (search && search.trim() !== "") {
+    sql += " WHERE inv.name LIKE ?";
+    values.push(`%${search}%`);
+  }
+
+  db.query(sql, values)
+    .then((results) => {
+      res.render("lowstock", {
+        items: results,
+        search: search,
+      });
+    })
+    .catch((err) => res.status(500).send(err));
 });
 
 // Create a route for root - /
 app.get("/expireditems", (req, res) => {
-  sql =
-    "SELECT exi.inventory_id,inv.id,exi.status,inv.name,inv.category,inv.created_at,inv.batch_number,exi.expiry_date,inv.quantity,exi.days_left \
-   FROM expired_items AS exi \
-    JOIN items_inventory AS inv \
-     ON exi.inventory_id = inv.id;";
-  db.query(sql).then((results) => {
-    res.render("expireditems", { items: results });
-  });
+  const search = req.query.search;
+
+  let sql = ` 
+    SELECT 
+      exi.inventory_id,
+      inv.id,
+      exi.status,
+      inv.name,
+      inv.category,
+      inv.created_at,
+      inv.batch_number,
+      exi.expiry_date,
+      inv.quantity,
+      exi.days_left
+    FROM expired_items AS exi
+    JOIN items_inventory AS inv 
+      ON exi.inventory_id = inv.id
+  `;
+
+  const values = [];
+
+  if (search && search.trim() !== "") {
+    sql += " WHERE inv.name LIKE ?";
+    values.push(`%${search}%`);
+  }
+
+  db.query(sql, values)
+    .then((results) => {
+      res.render("expireditems", {
+        items: results,
+        search: search,
+      });
+    })
+    .catch((err) => res.status(500).send(err));
 });
 
 app.get("/expiringitems", (req, res) => {
-  sql =
-    "SELECT ex.inventory_id,inv.id,ex.status,inv.name,inv.category,inv.batch_number,ex.expiry_date,inv.quantity,ex.days_left,ex.created_at \
-   FROM expiring_soon AS ex \
-    JOIN items_inventory AS inv \
-     ON ex.inventory_id = inv.id;";
-  db.query(sql).then((results) => {
-    res.render("expiringitems", { items: results });
-  });
+  const search = req.query.search;
+
+  let sql = `
+    SELECT 
+      ex.inventory_id,
+      inv.id,
+      ex.status,
+      inv.name,
+      inv.category,
+      inv.batch_number,
+      ex.expiry_date,
+      inv.quantity,
+      ex.days_left,
+      ex.created_at
+    FROM expiring_soon AS ex
+    JOIN items_inventory AS inv 
+      ON ex.inventory_id = inv.id
+  `;
+
+  const values = [];
+
+  if (search && search.trim() !== "") {
+    sql += " WHERE inv.name LIKE ?";
+    values.push(`%${search}%`);
+  }
+
+  db.query(sql, values)
+    .then((results) => {
+      res.render("expiringitems", {
+        items: results,
+        search: search,
+      });
+    })
+    .catch((err) => res.status(500).send(err));
 });
 
 app.get("/addstock", (req, res) => {
-  sql = "SELECT * FROM items_inventory";
+  sql = "SELECT DISTINCT name, item_id FROM items_inventory";
+
   db.query(sql).then((results) => {
     res.render("addstock", { items: results });
   });
@@ -186,7 +309,6 @@ app.post("/addstock", async (req, res) => {
       if (err) return res.status(500).send(err);
     },
     console.log("done"),
-    // res.redirect("/addstock"),
   );
 });
 
@@ -200,7 +322,7 @@ app.get("/productDetails/:id", async (req, res) => {
   await product.getProductExpiry();
   await product.getProductBatchNo();
   await product.getProductSupplier();
-  // await product.getProductPrice();
+  await product.getProductThreshold();
   await product.getCreatedDate();
   await product.getUpdatedDate();
   console.log(product);

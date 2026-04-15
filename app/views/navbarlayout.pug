@@ -9,6 +9,7 @@ html(lang="en")
 
     script(src="https://kit.fontawesome.com/328bbfc4a9.js", crossorigin="anonymous")
   body
+    .nav
     .headNav
       a(href="/dashboard")
         .logo
@@ -16,12 +17,19 @@ html(lang="en")
           h1 MediStock
       ul.navLinks
         li: a(href="/inventory") Inventory
-        li Order
-        li Report
-        li Alert
+        li: a(href="/activitylog") History
+        li: a(href="/expiringitems") Alert
       .rightNav
-        .userProfile
+        a.userProfile(href="/adminprofile")
           i.fa-solid.fa-user
           p Profile
+        #menu
+          i.fa-solid.fa-bars
+    .mobilenav      
+      ul.navlink
+        li: a(href="/inventory") Inventory
+        li: a(href="/activitylog") History
+        li: a(href="/expiringitems") Alert
     block content
     block scripts 
+    script(src="/script.js")

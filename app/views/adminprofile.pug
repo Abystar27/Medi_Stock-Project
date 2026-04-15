@@ -1,0 +1,63 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Create User
+    link(rel="stylesheet", href="/CSS/style.css")
+
+
+  body.adminpage
+    a.adminback(href="/dashboard") <<
+    h1 Welcome, Admin  
+    a.logout(href="/logout") Log out
+
+    table.activitylogtable
+      thead
+        tr
+          th Name
+          th Email
+          th Role
+          th TimeStamp
+      tbody#inventorybody
+        for item in items
+          tr
+            td= item.name
+            td= item.email
+            td= item.role
+            td= new Date(item.created_at).toLocaleString()
+
+    form(action="/set-password" method="POST")
+      
+      div.adminPage
+        label(for="username") Username
+        input(
+          type="text"
+          name="username"
+          required
+        )
+
+      div.adminPage
+        label(for="email") Email
+        input(
+          type="email"
+          name="email"
+          id="email"
+          required
+        )
+
+      div.adminPage
+        label(for="password") Password
+        input(
+          type="password"
+          name="password"
+          required
+        )
+
+      div.adminPage
+        label(for="role") Role
+        select(name="role" id="role")
+          option(value="admin") Admin
+          option(value="staff") Staff
+
+      button(type="submit") Create User
