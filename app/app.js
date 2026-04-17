@@ -36,10 +36,10 @@ app.post("/authenticate", async function (req, res) {
       if (match) {
         res.redirect("/dashboard");
       } else {
-        res.status("invalid password");
+        res.render("login", { error: "invalid email or password" });
       }
     } else {
-      res.status("invalid email");
+      res.render("login", { error: "invalid email or password" });
     }
   } catch (err) {
     console.error(`Error while comparing `, err.message);

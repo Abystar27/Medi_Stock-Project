@@ -6,7 +6,7 @@ block content
       img#userimage(src="/Images/medi complete.png")
       h1 Welcome  to...
       p Medi-Stock is a user-friendly web apllication designed to help hospitals efficiently track, manage and update their medical supplies and equipment.
-
+    
     form(action=`/authenticate/` method="POST")
       p Welcome to MediStock
       label(for="")  Email
@@ -16,7 +16,8 @@ block content
       label(for="")  Password
       br
       input#password(type="password", name="password", required)
-      p#error field can't be empty
       br
+      if error 
+       p.errormsg= error
       button#submit(type="submit") Login
 
