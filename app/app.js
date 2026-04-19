@@ -3,8 +3,8 @@ const express = require("express");
 var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// Create express app
 
+// Create express app#
 app.set("view engine", "pug");
 app.set("views", "./app/views");
 app.use(express.static("public"));
@@ -20,11 +20,13 @@ app.get("/", function (req, res) {
   res.render("index");
 });
 
-// Create a route for root - /
+// Create a route for login /
 app.get("/login", function (req, res) {
   res.render("login");
 });
 
+
+// authenticate for login /
 app.post("/authenticate", async function (req, res) {
   params = req.body;
   var User = new user(params.email);
@@ -46,6 +48,8 @@ app.post("/authenticate", async function (req, res) {
   }
 });
 
+
+// set password for existing user or create new user /
 app.post("/set-password", async function (req, res) {
   params = req.body;
   var User = new user(params.email);
@@ -71,15 +75,19 @@ app.post("/set-password", async function (req, res) {
   }
 });
 
-// Create a route for root - /
+// Create a route for dashboard page /
 app.get("/dashboard", (req, res) => {
   res.render("dashboard");
 });
 
+
+// Create a route for add new product page /
 app.get("/addNewProduct", (req, res) => {
   res.render("addNewProduct");
 });
 
+
+// Create a route for admin profile page /
 app.get("/adminprofile", (req, res) => {
   sql = "select * from users";
   db.query(sql).then((results) => {
@@ -88,11 +96,14 @@ app.get("/adminprofile", (req, res) => {
   });
 });
 
+// log out page /
 app.get("/logout", function (req, res) {
   req.session.destroy();
   res.redirect("/login");
 });
 
+
+// Adding new product to the inventory /
 app.post("/addNewProduct", async (req, res) => {
   // console.log(req.body);
   const {
@@ -133,6 +144,7 @@ app.post("/addNewProduct", async (req, res) => {
   );
 });
 
+// Create a route for inventory and implementing the search filter/
 app.get("/inventory", (req, res) => {
   const search = req.query.search;
   const category = req.query.category;
@@ -155,6 +167,8 @@ app.get("/inventory", (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
+
+// Create a route for activity log /
 app.get("/activitylog", (req, res) => {
   sql = "select * from activity_logs";
   db.query(sql).then((results) => {
@@ -163,6 +177,8 @@ app.get("/activitylog", (req, res) => {
   });
 });
 
+
+// Create a route for lowstock page and implement search /
 app.get("/lowstock", (req, res) => {
   const search = req.query.search;
 
@@ -198,7 +214,7 @@ app.get("/lowstock", (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
-// Create a route for root - /
+// Create a route for expired items/
 app.get("/expireditems", (req, res) => {
   const search = req.query.search;
 
@@ -236,6 +252,8 @@ app.get("/expireditems", (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
+
+// Create a route for expiring items/
 app.get("/expiringitems", (req, res) => {
   const search = req.query.search;
 
@@ -273,6 +291,7 @@ app.get("/expiringitems", (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
+// sending the product names and id to the addstock page/
 app.get("/addstock", (req, res) => {
   sql = "SELECT DISTINCT name, item_id FROM items_inventory";
 
@@ -281,6 +300,8 @@ app.get("/addstock", (req, res) => {
   });
 });
 
+
+// Adding new batch of stock to the inventory/
 app.post("/addstock", async (req, res) => {
   const { item_id, quantity, supplier, batch_number, expiry_date } = req.body;
   var product = new Stock(item_id);
@@ -312,6 +333,8 @@ app.post("/addstock", async (req, res) => {
   );
 });
 
+
+// Create a route for individual product page
 app.get("/productDetails/:id", async (req, res) => {
   var stId = req.params.id;
   // Create a student class with the ID passed
@@ -329,6 +352,8 @@ app.get("/productDetails/:id", async (req, res) => {
   res.render("productDetails", { product });
 });
 
+
+//deleting a product
 app.post("/products/delete/:id", async (req, res) => {
   const id = req.params.id;
   var product = new Product(id);
@@ -336,6 +361,8 @@ app.post("/products/delete/:id", async (req, res) => {
   res.redirect("/inventory");
 });
 
+
+// Updating product quantity/
 app.post("/updateinventoryquantity/:id", async (req, res) => {
   const id = req.params.id;
   const { quantity } = req.body;
@@ -352,6 +379,8 @@ app.post("/updateinventoryquantity/:id", async (req, res) => {
   res.redirect("back");
 });
 
+
+// Updating product bathcNo/
 app.post("/updateinventorybatchNo/:id", (req, res) => {
   const id = req.params.id;
   const { batch_number } = req.body;
@@ -368,6 +397,8 @@ app.post("/updateinventorybatchNo/:id", (req, res) => {
   res.redirect("back");
 });
 
+
+// Updating product expiry date/
 app.post("/updateinventoryexpiry/:id", (req, res) => {
   const id = req.params.id;
   const { expiry_date } = req.body;
@@ -384,6 +415,8 @@ app.post("/updateinventoryexpiry/:id", (req, res) => {
   res.redirect("back");
 });
 
+
+// Updating product supplier/
 app.post("/updateinventorysupplier/:id", (req, res) => {
   const id = req.params.id;
   const { supplier } = req.body;
@@ -423,7 +456,6 @@ app.get("/hello/:name", function (req, res) {
   // req.params contains any parameters in the request
   // We can examine it in the console for debugging purposes
   console.log(req.params);
-  //  Retrieve the 'name' parameter and use it in a dynamically generated page
   res.send("Hello " + req.params.name);
 });
 
